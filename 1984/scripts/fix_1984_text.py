@@ -1,9 +1,13 @@
+#!/usr/bin/env python
+
 from re import match
 from os import listdir
-from os.path import isfile, join
+from os.path import isfile, join, dirname, realpath
+
+mydir = dirname(realpath(__file__))
 
 for part in range(1,4):
-  mypath = './part-0' + str(part)
+  mypath = join(mydir, '..', 'part-0' + str(part))
   ins = [f for f in listdir(mypath) if (isfile(join(mypath, f)) and f.startswith('part'))]
   ins.sort()
 
