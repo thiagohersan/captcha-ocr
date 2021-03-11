@@ -2,12 +2,12 @@ from re import match
 from os import listdir
 from os.path import isfile, join
 
-for part in range(2,3):
+for part in range(1,4):
   mypath = './part-0' + str(part)
   ins = [f for f in listdir(mypath) if (isfile(join(mypath, f)) and f.startswith('part'))]
   ins.sort()
 
-  for fname in ins[8:9]:
+  for fname in ins:
     fpath = join(mypath, fname)
     with open(fpath) as fpi:
       lines = fpi.readlines()
@@ -25,7 +25,9 @@ for part in range(2,3):
              l.rstrip().endswith("----"))
             and len(l) < 74):
           l += '\n'
-        elif (match('chapter [0-9]+', l.lower()) or match('part [otfsen]', l.lower()) or (l.rstrip() == '')):
+        elif (match('chapter [0-9]+', l.lower()) or
+              match('part [otfsen]', l.lower()) or
+              (l.rstrip() == '')):
           l = l
         else:
           l = l.rstrip() + ' '

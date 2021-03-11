@@ -52,8 +52,8 @@ walk, he could not hold his stool out at arm's length, he could not stand
 on one leg without falling over. He squatted down on his heels, and found
 that with agonizing pains in thigh and calf he could just lift himself to
 a standing position. He lay flat on his belly and tried to lift his weight
-by his hands. It was hopeless, he could not raise himself a centimetre.
-But after a few more days--a few more mealtimes--even that feat was
+by his hands. It was hopeless, he could not raise himself a
+centimetre. But after a few more days--a few more mealtimes--even that feat was
 accomplished. A time came when he could do it six times running. He began
 to grow actually proud of his body, and to cherish an intermittent belief
 that his face also was growing back to normal. Only when he chanced to put
@@ -83,14 +83,20 @@ The pencil felt thick and awkward in his fingers. He began to write down
 the thoughts that came into his head. He wrote first in large clumsy
 capitals:
 FREEDOM IS SLAVERY
+
+
 Then almost without a pause he wrote beneath it:
 TWO AND TWO MAKE FIVE
+
+
 But then there came a sort of check. His mind, as though shying away from
 something, seemed unable to concentrate. He knew that he knew what came
 next, but for the moment he could not recall it. When he did recall it,
 it was only by consciously reasoning out what it must be: it did not come
 of its own accord. He wrote:
 GOD IS POWER
+
+
 He accepted everything. The past was alterable. The past never had been
 altered. Oceania was at war with Eastasia. Oceania had always been at war
 with Eastasia. Jones, Aaronson, and Rutherford were guilty of the crimes
@@ -113,8 +119,8 @@ really happen. We imagine it. It is hallucination.' He pushed the thought
 under instantly. The fallacy was obvious. It presupposed that somewhere
 or other, outside oneself, there was a 'real' world where 'real' things
 happened. But how could there be such a world? What knowledge have we of
-anything, save through our own minds? All happenings are in the mind.
-Whatever happens in all minds, truly happens.
+anything, save through our own minds? All happenings are in the
+mind. Whatever happens in all minds, truly happens.
 He had no difficulty in disposing of the fallacy, and he was in no danger
 of succumbing to it. He realized, nevertheless, that it ought never to
 have occurred to him. The mind should develop a blind spot whenever a
@@ -123,8 +129,8 @@ instinctive. CRIMESTOP, they called it in Newspeak.
 He set to work to exercise himself in crimestop. He presented himself with
 propositions--'the Party says the earth is flat', 'the party says that
 ice is heavier than water'--and trained himself in not seeing or not
-understanding the arguments that contradicted them. It was not easy.
-It needed great powers of reasoning and improvisation. The arithmetical
+understanding the arguments that contradicted them. It was not
+easy. It needed great powers of reasoning and improvisation. The arithmetical
 problems raised, for instance, by such a statement as 'two and two make
 five' were beyond his intellectual grasp. It needed also a sort of
 athleticism of mind, an ability at one moment to make the most delicate
@@ -170,8 +176,8 @@ He lay back on the bed and tried to compose himself. What had he done? How
 many years had he added to his servitude by that moment of weakness?
 In another moment he would hear the tramp of boots outside. They could not
 let such an outburst go unpunished. They would know now, if they had not
-known before, that he was breaking the agreement he had made with them.
-He obeyed the Party, but he still hated the Party. In the old days he had
+known before, that he was breaking the agreement he had made with
+them. He obeyed the Party, but he still hated the Party. In the old days he had
 hidden a heretical mind beneath an appearance of conformity. Now he had
 retreated a step further: in the mind he had surrendered, but he had hoped
 to keep the inner heart inviolate. He knew that he was in the wrong, but
@@ -217,11 +223,11 @@ officer and the black-uniformed guards.
 'Get up,' said O'Brien. 'Come here.'
 Winston stood opposite him. O'Brien took Winston's shoulders between his
 strong hands and looked at him closely.
-'You have had thoughts of deceiving me,' he said. 'That was stupid.
-Stand up straighter. Look me in the face.'
+'You have had thoughts of deceiving me,' he said. 'That was
+stupid. Stand up straighter. Look me in the face.'
 He paused, and went on in a gentler tone:
-'You are improving. Intellectually there is very little wrong with you.
-It is only emotionally that you have failed to make progress. Tell me,
+'You are improving. Intellectually there is very little wrong with
+you. It is only emotionally that you have failed to make progress. Tell me,
 Winston--and remember, no lies: you know that I am always able to detect
 a lie--tell me, what are your true feelings towards Big Brother?'
 'I hate him.'

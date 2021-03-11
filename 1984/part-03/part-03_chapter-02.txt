@@ -154,7 +154,8 @@ or whether the effect was electrically produced; but his body was being
 wrenched out of shape, the joints were being slowly torn apart. Although
 the pain had brought the sweat out on his forehead, the worst of all was
 the fear that his backbone was about to snap. He set his teeth and
-breathed hard through his nose, trying to keep silent as long as possible.
+breathed hard through his nose, trying to keep silent as long as
+possible.
 'You are afraid,' said O'Brien, watching his face, 'that in another moment
 something is going to break. Your especial fear is that it will be your
 backbone. You have a vivid mental picture of the vertebrae snapping apart
@@ -221,12 +222,12 @@ least to see it.
 'No,' said O'Brien.
 He stepped across the room. There was a memory hole in the opposite wall.
 O'Brien lifted the grating. Unseen, the frail slip of paper was whirling
-away on the current of warm air; it was vanishing in a flash of flame.
-O'Brien turned away from the wall.
+away on the current of warm air; it was vanishing in a flash of flame. O'Brien turned
+away from the wall.
 'Ashes,' he said. 'Not even identifiable ashes. Dust. It does not exist.
 It never existed.'
-'But it did exist! It does exist! It exists in memory. I remember it.
-You remember it.'
+'But it did exist! It does exist! It exists in memory. I
+remember it. You remember it.'
 'I do not remember it,' said O'Brien.
 Winston's heart sank. That was doublethink. He had a feeling of deadly
 helplessness. If he could have been certain that O'Brien was lying, it
@@ -249,8 +250,8 @@ Again the feeling of helplessness descended upon Winston. His eyes flitted
 towards the dial. He not only did not know whether 'yes' or 'no' was the
 answer that would save him from pain; he did not even know which answer he
 believed to be the true one.
-O'Brien smiled faintly. 'You are no metaphysician, Winston,' he said.
-'Until this moment you had never considered what is meant by existence. I
+O'Brien smiled faintly. 'You are no metaphysician, Winston,' he
+said. 'Until this moment you had never considered what is meant by existence. I
 will put it more precisely. Does the past exist concretely, in space? Is
 there somewhere or other a place, a world of solid objects, where the past
 is still happening?'
@@ -313,7 +314,7 @@ but unmistakably four.
 'Five! Five! Five!'
 'No, Winston, that is no use. You are lying. You still think there are
 four. How many fingers, please?'
-'Four! five! Four! Anything you like. Only stop it, stop the pain!'
+'Four! Five! Four! Anything you like. Only stop it, stop the pain!'
 Abruptly he was sitting up with O'Brien's arm round his shoulders. He had
 perhaps lost consciousness for a few seconds. The bonds that had held his
 body down were loosened. He felt very cold, he was shaking uncontrollably,
@@ -325,8 +326,8 @@ and that it was O'Brien who would save him from it.
 'You are a slow learner, Winston,' said O'Brien gently.
 'How can I help it?' he blubbered. 'How can I help seeing what is in front
 of my eyes? Two and two are four.'
-'Sometimes, Winston. Sometimes they are five. Sometimes they are three.
-Sometimes they are all of them at once. You must try harder. It is not
+'Sometimes, Winston. Sometimes they are five. Sometimes they are
+three. Sometimes they are all of them at once. You must try harder. It is not
 easy to become sane.'
 He laid Winston down on the bed. The grip of his limbs tightened again,
 but the pain had ebbed away and the trembling had stopped, leaving him
@@ -356,8 +357,8 @@ out, disappearing behind one another and reappearing again. He was trying
 to count them, he could not remember why. He knew only that it was
 impossible to count them, and that this was somehow due to the mysterious
 identity between five and four. The pain died down again. When he opened
-his eyes it was to find that he was still seeing the same thing.
-Innumerable fingers, like moving trees, were still streaming past in
+his eyes it was to find that he was still seeing the same
+thing. Innumerable fingers, like moving trees, were still streaming past in
 either direction, crossing and recrossing. He shut his eyes again.
 'How many fingers am I holding up, Winston?'
 'I don't know. I don't know. You will kill me if you do that again. Four,
@@ -365,8 +366,8 @@ five, six--in all honesty I don't know.'
 'Better,' said O'Brien.
 A needle slid into Winston's arm. Almost in the same instant a blissful,
 healing warmth spread all through his body. The pain was already
-half-forgotten. He opened his eyes and looked up gratefully at O'Brien.
-At sight of the heavy, lined face, so ugly and so intelligent, his heart
+half-forgotten. He opened his eyes and looked up gratefully at
+O'Brien. At sight of the heavy, lined face, so ugly and so intelligent, his heart
 seemed to turn over. If he could have moved he would have stretched out
 a hand and laid it on O'Brien's arm. He had never loved him so deeply as
 at this moment, and not merely because he had stopped the pain. The old
@@ -423,14 +424,14 @@ deliberately set themselves to destroy their dignity. They wore them down
 by torture and solitude until they were despicable, cringing wretches,
 confessing whatever was put into their mouths, covering themselves with
 abuse, accusing and sheltering behind one another, whimpering for mercy.
-And yet after only a few years the same thing had happened over again.
-The dead men had become martyrs and their degradation was forgotten. Once
+And yet after only a few years the same thing had happened over
+again. The dead men had become martyrs and their degradation was forgotten. Once
 again, why was it? In the first place, because the confessions that they
 had made were obviously extorted and untrue. We do not make mistakes of
 that kind. All the confessions that are uttered here are true. We make
 them true. And above all we do not allow the dead to rise up against us.
-You must stop imagining that posterity will vindicate you, Winston.
-Posterity will never hear of you. You will be lifted clean out from the
+You must stop imagining that posterity will vindicate you,
+Winston. Posterity will never hear of you. You will be lifted clean out from the
 stream of history. We shall turn you into gas and pour you into the
 stratosphere. Nothing will remain of you, not a name in a register, not
 a memory in a living brain. You will be annihilated in the past as well
@@ -450,8 +451,8 @@ different from the persecutors of the past? We are not content with
 negative obedience, nor even with the most abject submission. When finally
 you surrender to us, it must be of your own free will. We do not destroy
 the heretic because he resists us: so long as he resists us we never
-destroy him. We convert him, we capture his inner mind, we reshape him.
-We burn all evil and all illusion out of him; we bring him over to our
+destroy him. We convert him, we capture his inner mind, we reshape
+him. We burn all evil and all illusion out of him; we bring him over to our
 side, not in appearance, but genuinely, heart and soul. We make him one of
 ourselves before we kill him. It is intolerable to us that an erroneous
 thought should exist anywhere in the world, however secret and powerless
@@ -486,17 +487,17 @@ grown stern again.
 'Do not imagine that you will save yourself, Winston, however completely
 you surrender to us. No one who has once gone astray is ever spared. And
 even if we chose to let you live out the natural term of your life, still
-you would never escape from us. What happens to you here is for ever.
-Understand that in advance. We shall crush you down to the point from
+you would never escape from us. What happens to you here is for
+ever. Understand that in advance. We shall crush you down to the point from
 which there is no coming back. Things will happen to you from which you
 could not recover, if you lived a thousand years. Never again will you be
-capable of ordinary human feeling. Everything will be dead inside you.
-Never again will you be capable of love, or friendship, or joy of living,
+capable of ordinary human feeling. Everything will be dead inside
+you. Never again will you be capable of love, or friendship, or joy of living,
 or laughter, or curiosity, or courage, or integrity. You will be hollow.
 We shall squeeze you empty, and then we shall fill you with ourselves.'
 He paused and signed to the man in the white coat. Winston was aware of
-some heavy piece of apparatus being pushed into place behind his head.
-O'Brien had sat down beside the bed, so that his face was almost on a
+some heavy piece of apparatus being pushed into place behind his
+head. O'Brien had sat down beside the bed, so that his face was almost on a
 level with Winston's.
 'Three thousand,' he said, speaking over Winston's head to the man in the
 white coat.
@@ -582,11 +583,11 @@ the Party.'
 Once again the sense of helplessness assailed him. He knew, or he could
 imagine, the arguments which proved his own nonexistence; but they were
 nonsense, they were only a play on words. Did not the statement, 'You do
-not exist', contain a logical absurdity? But what use was it to say so?
-His mind shrivelled as he thought of the unanswerable, mad arguments with
+not exist', contain a logical absurdity? But what use was it to say
+so? His mind shrivelled as he thought of the unanswerable, mad arguments with
 which O'Brien would demolish him.
-'I think I exist,' he said wearily. 'I am conscious of my own identity.
-I was born and I shall die. I have arms and legs. I occupy a particular
+'I think I exist,' he said wearily. 'I am conscious of my own
+identity. I was born and I shall die. I have arms and legs. I occupy a particular
 point in space. No other solid object can occupy the same point
 simultaneously. In that sense, does Big Brother exist?'
 'It is of no importance. He exists.'
