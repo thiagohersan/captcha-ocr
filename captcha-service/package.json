@@ -1,0 +1,17 @@
+{
+  "name": "captcha-service",
+  "description": "",
+  "version": "0.1.0",
+  "dependencies": {
+    "crypto-js": "^4.0.0",
+    "string-similarity": "^4.0.4"
+  },
+  "devDependencies": {
+    "aws-sdk": "^2.635.0",
+    "aws-sdk-mock": "^5.0.0",
+    "dotenv": "^8.2.0",
+    "serverless-export-env": "github:arabold/serverless-export-env",
+    "serverless-mocha": "^1.12.0",
+    "serverless-pseudo-parameters": "^2.5.0"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "title": "Check Schema",
+  "required": [
+    "phrase",
+    "token"
+  ],
+  "properties": {
+    "phrase": {
+      "type": "string",
+      "title": "Phrase",
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "token": {
+      "title": "Token",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512
+    }
+  }
+}
