@@ -2,6 +2,10 @@
   "name": "captcha-service",
   "description": "",
   "version": "0.1.0",
+  "scripts": {
+    "deploy": "sls deploy",
+    "test": "sls export-env; mocha ./src/tests"
+  },
   "dependencies": {
     "crypto-js": "^4.0.0",
     "string-similarity": "^4.0.4"
