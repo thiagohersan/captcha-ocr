@@ -1,6 +1,11 @@
 const FONT_SIZE = 48;
 const FONT_FILE = './fonts/Open_Sans/OpenSans-Bold.ttf';
 
+const PARAM_BLUR = 1.6;
+const PARAM_SHEAR = [0.25, 0.5];
+const PARAM_KEYSTONE = [4, 20];
+const PARAM_WAVE = [6, 10];
+
 class Word {
   constructor(word) {
     this.word = word;
@@ -19,12 +24,13 @@ class Word {
     this.keyTransform(this.image, srcImg);
     this.waveShear(srcImg, this.image);
 
-    this.image.filter(BLUR, 1);
+    this.image.filter(BLUR, PARAM_BLUR);
     UImage.remove();
   }
 
   horizontalShear(src, dst) {
-    const w = (Math.random() > 0.5) ? random(0.25, 0.5) : -1 * random(0.25, 0.5);
+    const w = (Math.random() > 0.5) ?
+          random(PARAM_SHEAR[0], PARAM_SHEAR[1]) : -random(PARAM_SHEAR[0], PARAM_SHEAR[1]);
 
     const intWidth = Math.floor(src.width);
     const intHeight = Math.floor(src.height);
@@ -46,7 +52,7 @@ class Word {
   }
 
   keyTransform(src, dst) {
-    const w0 = random(4, 16);
+    const w0 = random(PARAM_KEYSTONE[0], PARAM_KEYSTONE[1]);
     const w1 = 100.0 - w0;
 
     // squeeze top or bottom
@@ -93,8 +99,8 @@ class Word {
   }
 
   waveShear(src, dst) {
-    const nWaves = random(1, 4);
-    const ampY = random(4, 8);
+    const nWaves = this.word.length;
+    const ampY = random(PARAM_WAVE[0], PARAM_WAVE[1]);
     const deltaFreq = ['CONSTANT', 'INCREASING', 'DECREASING'][Math.floor(3 * Math.random())];
 
     const intWidth = Math.floor(src.width);
@@ -102,8 +108,8 @@ class Word {
 
     const intWidth_2 = intWidth / 2;
     const ampY_2 = ampY / 2;
-    const nWaves_m1 = constrain(nWaves - 1, 1, nWaves);
-    const nWaves_m2 = constrain(nWaves - 2, 1, nWaves);
+    const nWaves_m1 = constrain(nWaves / 2.2, 1, nWaves);
+    const nWaves_m2 = constrain(nWaves / 1.6, 1, nWaves);
 
     src.loadPixels();
     dst.loadPixels();
