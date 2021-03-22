@@ -28,8 +28,8 @@ after_script:
       echo "Deploy App"
       git clone https://thiagohersan:$GHTOKEN@github.com/thiagohersan/captcha-ocr.git
       cd captcha-ocr
-      git config user.name travis
-      git config user.email email@mail.com
+      git config user.name $GHUSER
+      git config user.email $GHEMAIL
 
       git checkout --orphan gh-pages
 
