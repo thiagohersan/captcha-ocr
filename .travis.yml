@@ -26,8 +26,8 @@ after_script:
     if [[ $DEPLOY_APP = true ]]
     then
       echo "Deploy App"
-      git clone https://thiagohersan:$GHTOKEN@github.com/thiagohersan/captcha-ocr.git
-      cd captcha-ocr
+      #git clone https://thiagohersan:$GHTOKEN@github.com/thiagohersan/captcha-ocr.git
+      #cd captcha-ocr
       git config user.name $GHUSER
       git config user.email $GHEMAIL
 
@@ -38,8 +38,9 @@ after_script:
       rm -rf 1984 captcha-service
       git add index.html index.css fonts js
       git commit -m "updates site"
-      git push origin :gh-pages
-      git push -u origin gh-pages
-      cd ..
-      rm -rf captcha-ocr
+      git remote add origin-pages https://thiagohersan:$GHTOKEN@github.com/thiagohersan/captcha-ocr.git
+      git push origin-pages :gh-pages
+      git push -u origin-pages gh-pages
+      #cd ..
+      #rm -rf captcha-ocr
     fi
