@@ -7,7 +7,9 @@ function preload() {
   EL.container = document.getElementById('my-canvas-container');
   EL.menu = document.getElementById('my-menu-container');
   EL.text = document.getElementById('my-input-text');
+  EL.button1984 = document.getElementById('my-button-1984');
   EL.text.addEventListener('keyup', createCaptcha);
+  EL.button1984.addEventListener('click', create1984Captcha);
 }
 
 function setup() {
@@ -28,13 +30,38 @@ function windowResized() {
   resizeCanvas(mDim, mDim);
 }
 
+let mWords = [];
 
 function createCaptcha() {
-  // TODO:
-  //   - get text
-  //   - distort all words
-  //   - place words
+  mWords = EL.text.value.split(' ').map(w => new Word(w));
+
+  const widthScale = 0.8;
+
+  const wordHeight = 0.7 * mWords[0].image.height;
+  const totalWidth = mWords.reduce((acc, cw) => acc + cw.image.width, 0);
+  const mDim = Math.ceil((Math.sqrt(wordHeight * totalWidth)) / wordHeight) * wordHeight;
+
+  const mCaptcha = createGraphics(mDim, mDim);
+  mCaptcha.background(255, 0);
+
+  let cX = -10;
+  let cY = 0;
+
+  mWords.forEach(w => {
+    if (cX + widthScale * w.image.width > mDim) {
+      cX = -10;
+      cY += wordHeight;
+    }
+    mCaptcha.image(w.image, cX, cY);
+    cX += widthScale * w.image.width;
+  });
 
   background(255);
-  text(EL.text.value, 0, 0, width, height);
+  image(mCaptcha, (width - mDim) / 2, 0);
+}
+
+function create1984Captcha() {
+  const m1984Phrases = seedPhrases.find(el => el.book === '1984').phrases.en;
+  EL.text.value = m1984Phrases[Math.floor(m1984Phrases.length * Math.random())];
+  createCaptcha();
 }

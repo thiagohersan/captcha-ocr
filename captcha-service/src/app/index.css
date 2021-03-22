@@ -11,6 +11,8 @@ input {
 }
 
 .menu-container {
+  display: flex;
+  flex-direction: row;
   padding: 20px;
   border: none;
   border-bottom: 2px #000 solid;
@@ -18,8 +20,14 @@ input {
 }
 
 .input-text {
-  width: 100%;
+  width: 80%;
   box-sizing: border-box;
+}
+
+.input-button {
+  width: 20%;
+  box-sizing: border-box;
+  cursor: pointer;
 }
 
 .canvas-container {
