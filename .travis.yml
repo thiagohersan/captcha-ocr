@@ -1,0 +1,40 @@
+language: node_js
+
+node_js:
+  - 12
+
+notifications:
+  email: false
+
+branches:
+  only:
+    - master
+
+script:
+  - echo "test if deploy"
+  - LATEST_COMMIT=$(git log -1 --format=format:%H --full-diff .)
+  - LATEST_APP_COMMIT=$(git log -1 --format=format:%H --full-diff ./captcha-service/src/app)
+  - |
+    if [[ $LATEST_COMMIT == $LATEST_APP_COMMIT ]]
+    then
+      echo "Deploy App"
+      DEPLOY_APP=true
+    fi
+
+after_script:
+  - |
+    if [[ $DEPLOY_APP = true ]]
+    then
+      echo "Deploy App"
+      cd captcha-service/src/app
+
+      git checkout --orphan gh-pages
+
+      git rm --cached -r .
+      git add index.html index.css fonts js
+      git commit -m "updates site"
+      git push origin :gh-pages
+      git push -u origin gh-pages
+
+    fi
+
