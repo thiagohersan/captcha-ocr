@@ -1,5 +1,4 @@
 const EL = {};
-const FONT_SIZE = 48;
 
 let mFont;
 
