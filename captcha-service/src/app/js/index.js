@@ -3,7 +3,7 @@ const EL = {};
 let mFont;
 
 function preload() {
-  mFont = loadFont('./fonts/Open_Sans/OpenSans-Bold.ttf');
+  mFont = loadFont(FONT_FILE);
   EL.container = document.getElementById('my-canvas-container');
   EL.menu = document.getElementById('my-menu-container');
   EL.text = document.getElementById('my-input-text');
@@ -31,10 +31,9 @@ function windowResized() {
 
 function createCaptcha() {
   // TODO:
-  //   - get text, measure length/height, etc
-  //   - set font-size
-  //   - place text
-  //   - distort text
+  //   - get text
+  //   - distort all words
+  //   - place words
 
   background(255);
   text(EL.text.value, 0, 0, width, height);

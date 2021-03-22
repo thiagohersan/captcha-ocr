@@ -1,34 +1,36 @@
 const FONT_SIZE = 48;
+const FONT_FILE = './fonts/Open_Sans/OpenSans-Bold.ttf';
 
 class Word {
   constructor(word) {
     this.word = word;
-    this.UImage = createGraphics(textWidth(word) + FONT_SIZE, textAscent() + 2 * textDescent());
-    this.UImage.background(200, 0, 0);
-    this.UImage.textFont(mFont);
-    this.UImage.textSize(FONT_SIZE);
-    this.UImage.text(word, FONT_SIZE / 2, 0, this.UImage.width, this.UImage.height);
+    const hPadding = FONT_SIZE / 2;
+    const UImage = createGraphics(textWidth(word) + 2 * hPadding, textAscent() + 2 * textDescent());
 
-    const srcImg = this.UImage.get();
-    const dstImg = createImage(srcImg.width, srcImg.height);
+    UImage.background(255, 0);
+    UImage.textFont(mFont);
+    UImage.textSize(FONT_SIZE);
+    UImage.text(word, hPadding, 0, UImage.width, UImage.height);
 
-    this.horizontalShear(srcImg, dstImg);
-    this.horizontalShear(dstImg, srcImg);
-    this.keyTransform(srcImg, dstImg);
+    const srcImg = UImage.get();
+    this.image = createImage(srcImg.width, srcImg.height);
 
-    dstImg.filter(BLUR, 1);
+    this.horizontalShear(srcImg, this.image);
+    this.keyTransform(this.image, srcImg);
+    this.waveShear(srcImg, this.image);
 
-    image(dstImg, 0, 0, dstImg.width / 1, dstImg.height / 1);
+    this.image.filter(BLUR, 1);
+    UImage.remove();
   }
 
   horizontalShear(src, dst) {
-    const w = (Math.random() > 0.5) ? random(0.3, 0.7) : -1 * random(0.3, 0.7);
-
-    src.loadPixels();
-    dst.loadPixels();
+    const w = (Math.random() > 0.5) ? random(0.25, 0.5) : -1 * random(0.25, 0.5);
 
     const intWidth = Math.floor(src.width);
     const intHeight = Math.floor(src.height);
+
+    src.loadPixels();
+    dst.loadPixels();
 
     for (let i = 0; i < intHeight; i++) {
       for (let j = 0; j < intWidth; j++) {
@@ -44,7 +46,7 @@ class Word {
   }
 
   keyTransform(src, dst) {
-    const w0 = random(5, 20);
+    const w0 = random(4, 16);
     const w1 = 100.0 - w0;
 
     // squeeze top or bottom
@@ -60,11 +62,13 @@ class Word {
     const g =  0.0;
     const h =  2.0 * b;
 
-    src.loadPixels();
-    dst.loadPixels();
-
     const intWidth = Math.floor(src.width);
     const intHeight = Math.floor(src.height);
+
+    const centerV = (squeezeTop) ? (-w0 / 2) : (w0 / 2.5);
+
+    src.loadPixels();
+    dst.loadPixels();
 
     for (let i = 0; i < intHeight; i++) {
       const ydf = i / intHeight;
@@ -78,7 +82,48 @@ class Word {
 
         // pixel
         const xu = constrain(Math.round(xuf * intWidth), 0, intWidth);
-        const yu = constrain(Math.round(yuf * intHeight), 0, intHeight);
+        const yu = constrain(Math.round(yuf * intHeight + centerV), 0, intHeight);
+
+        for (let p = 0; p < 4; p++) {
+          dst.pixels[4 * (i * intWidth + j) + p] = src.pixels[4 * (yu * intWidth + xu) + p];
+        }
+      }
+    }
+    dst.updatePixels();
+  }
+
+  waveShear(src, dst) {
+    const nWaves = random(1, 4);
+    const ampY = random(4, 8);
+    const deltaFreq = ['CONSTANT', 'INCREASING', 'DECREASING'][Math.floor(3 * Math.random())];
+
+    const intWidth = Math.floor(src.width);
+    const intHeight = Math.floor(src.height);
+
+    const intWidth_2 = intWidth / 2;
+    const ampY_2 = ampY / 2;
+    const nWaves_m1 = constrain(nWaves - 1, 1, nWaves);
+    const nWaves_m2 = constrain(nWaves - 2, 1, nWaves);
+
+    src.loadPixels();
+    dst.loadPixels();
+
+    for (let j = 0; j < intWidth; j++) {
+      const _j = (intWidth - j);
+
+      for (let i = 0; i < intHeight; i++) {
+        let yuf = 0;
+
+        if (deltaFreq === 'CONSTANT') {
+          yuf = i - ampY * sin(PI * j * nWaves / intWidth);
+        } else if (deltaFreq === 'INCREASING') {
+          yuf = i - ampY_2 * sin(PI * (nWaves_m1 * 0.01 * (j + intWidth_2)) * j / intWidth);
+        } else {
+          yuf = i - ampY_2 * sin(PI * (nWaves_m2 * 0.01 * (_j + intWidth_2)) * _j / intWidth);
+        }
+
+        const xu = constrain(Math.round(j), 0, intWidth);
+        const yu = constrain(Math.round(yuf - ampY / 2), 0, intHeight);
 
         for (let p = 0; p < 4; p++) {
           dst.pixels[4 * (i * intWidth + j) + p] = src.pixels[4 * (yu * intWidth + xu) + p];
