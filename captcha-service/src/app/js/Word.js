@@ -5,6 +5,8 @@ const PARAM_WAVE = [6, 10];
 
 class WordP {
   constructor(word) {
+    const t0 = performance.now();
+
     const hPadding = WordP.FONT_SIZE / 2;
     const vPadding = WordP.FONT_SIZE / 3;
 
@@ -20,6 +22,9 @@ class WordP {
 
     this.horizontalShear(chars);
     this.drawChars(chars, UImage);
+
+    const t1 = performance.now();
+    console.log(t1 - t0);
 
     image(UImage, 0, 0);
   }
@@ -85,10 +90,10 @@ class WordP {
 
 class Word {
   constructor(word) {
+    const t0 = performance.now();
     this.word = word;
     const hPadding = Word.FONT_SIZE / 2;
     const UImage = createGraphics(textWidth(word) + 2 * hPadding, textAscent() + 2 * textDescent());
-    console.log(UImage.width + ' ' + UImage.height);
 
     UImage.background(255, 0);
     UImage.textFont(Word.font);
@@ -99,6 +104,9 @@ class Word {
     this.image = createImage(srcImg.width, srcImg.height);
 
     this.horizontalShear(srcImg, this.image);
+    const t1 = performance.now();
+    console.log(t1 - t0);
+
     this.keyTransform(this.image, srcImg);
     this.waveShear(srcImg, this.image);
 
