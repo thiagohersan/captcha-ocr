@@ -16,11 +16,12 @@ class WordP {
     const UImage = createGraphics(this.bounds.w + 2 * hPadding, this.bounds.h + 2 * vPadding);
 
     UImage.background(255, 100, 100);
-    UImage.translate(0, this.bounds.h + vPadding);
+    UImage.translate(hPadding, this.bounds.h + vPadding);
 
+    this.horizontalShear(chars);
     this.drawChars(chars, UImage);
 
-    image(UImage, 0,0);
+    image(UImage, 0, 0);
   }
 
   drawChars(chars, UImage) {
@@ -66,7 +67,18 @@ class WordP {
     return chars;
   }
 
-  horizontalShear(src, dst) {}
+  horizontalShear(chars) {
+    const wordHeight = this.bounds.h + 2 * WordP.FONT_SIZE / 3;
+    const shear = WordP.FONT_SIZE;
+
+    for(let c = 0; c < chars.length; c++) {
+      for (let i = 0; i < chars[c].length; i++) {
+        const p = chars[c][i];
+        chars[c][i].x = map(p.y, 0, wordHeight, p.x, p.x + shear);
+      }
+    }
+  }
+
   keyTransform(src, dst) {}
   waveShear(src, dst) {}
 }
