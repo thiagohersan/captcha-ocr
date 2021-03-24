@@ -1,9 +1,13 @@
+const FONT_SIZE = 48;
+const FONT_FILE = './fonts/Open_Sans/OpenSans-Bold.ttf';
+
 const EL = {};
 
-let mFont;
-
 function preload() {
-  mFont = loadFont(FONT_FILE);
+  Word.font = loadFont(FONT_FILE);
+  WordP.font = loadFont(FONT_FILE);
+  Word.FONT_SIZE = FONT_SIZE;
+  WordP.FONT_SIZE = FONT_SIZE;
   EL.container = document.getElementById('my-canvas-container');
   EL.menu = document.getElementById('my-menu-container');
   EL.text = document.getElementById('my-input-text');
@@ -20,9 +24,7 @@ function setup() {
   mCanvas.elt.classList.add('captcha-canvas');
   smooth();
   noLoop();
-  textFont(mFont);
   textSize(FONT_SIZE);
-  textAlign(CENTER, CENTER);
 }
 
 function windowResized() {

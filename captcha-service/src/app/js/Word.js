@@ -1,20 +1,86 @@
-const FONT_SIZE = 48;
-const FONT_FILE = './fonts/Open_Sans/OpenSans-Bold.ttf';
-
 const PARAM_BLUR = 1.6;
 const PARAM_SHEAR = [0.25, 0.5];
 const PARAM_KEYSTONE = [4, 20];
 const PARAM_WAVE = [6, 10];
 
+class WordP {
+  constructor(word) {
+    const hPadding = WordP.FONT_SIZE / 2;
+    const vPadding = WordP.FONT_SIZE / 3;
+
+    this.word = word;
+    this.bounds = WordP.font.textBounds(this.word, 0, 0, WordP.FONT_SIZE);
+
+    const chars = this.getCharPoints(this.word);
+
+    const UImage = createGraphics(this.bounds.w + 2 * hPadding, this.bounds.h + 2 * vPadding);
+
+    UImage.background(255, 100, 100);
+    UImage.translate(0, this.bounds.h + vPadding);
+
+    this.drawChars(chars, UImage);
+
+    image(UImage, 0,0);
+  }
+
+  drawChars(chars, UImage) {
+    for(let c = 0; c < chars.length; c++) {
+      UImage.beginShape();
+      for (let i = 0; i < chars[c].length; i++) {
+        const p = chars[c][i];
+        vertex(p.x, p.y);
+      }
+      UImage.endShape();
+    }
+  }
+
+  getCharPoints(word) {
+    const spacer = ' '.repeat(10);
+    const spaced = word.split('').map(x => x+spacer).join('');
+    const spacerWidth = WordP.font.textBounds(spacer, 0, 0, WordP.FONT_SIZE).w;
+
+    let points = WordP.font.textToPoints(spaced, 0, 0, WordP.FONT_SIZE, {
+      sampleFactor: 4
+    });
+
+    const chars = [];
+    let p = points[0];
+    let pp = points[0];
+    let mChar = [pp];
+
+    for (let i = 1; i < points.length; i++) {
+      p = points[i];
+
+      if(Math.abs(p.x - pp.x) > spacerWidth) {
+        chars.push([...mChar]);
+        mChar = [];
+      } else {
+        mChar.push({
+          x: p.x - chars.length * spacerWidth,
+          y: p.y
+        });
+      }
+      pp = points[i];
+    }
+    chars.push(mChar);
+    return chars;
+  }
+
+  horizontalShear(src, dst) {}
+  keyTransform(src, dst) {}
+  waveShear(src, dst) {}
+}
+
 class Word {
   constructor(word) {
     this.word = word;
-    const hPadding = FONT_SIZE / 2;
+    const hPadding = Word.FONT_SIZE / 2;
     const UImage = createGraphics(textWidth(word) + 2 * hPadding, textAscent() + 2 * textDescent());
+    console.log(UImage.width + ' ' + UImage.height);
 
     UImage.background(255, 0);
-    UImage.textFont(mFont);
-    UImage.textSize(FONT_SIZE);
+    UImage.textFont(Word.font);
+    UImage.textSize(Word.FONT_SIZE);
     UImage.text(word, hPadding, 0, UImage.width, UImage.height);
 
     const srcImg = UImage.get();
