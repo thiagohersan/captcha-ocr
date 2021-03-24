@@ -46,7 +46,7 @@ class WordP {
     const spacerWidth = WordP.font.textBounds(spacer, 0, 0, WordP.FONT_SIZE).w;
 
     let points = WordP.font.textToPoints(spaced, 0, 0, WordP.FONT_SIZE, {
-      sampleFactor: 4
+      sampleFactor: 2
     });
 
     const chars = [];
