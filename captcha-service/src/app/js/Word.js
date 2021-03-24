@@ -9,18 +9,20 @@ class WordP {
 
     const hPadding = WordP.FONT_SIZE / 2;
     const vPadding = WordP.FONT_SIZE / 3;
+    const bounds = WordP.font.textBounds(word, 0, 0, WordP.FONT_SIZE);
 
     this.word = word;
-    this.bounds = WordP.font.textBounds(this.word, 0, 0, WordP.FONT_SIZE);
+    this.imageWidth = bounds.w + 2 * hPadding;
+    this.imageHeight = bounds.h + 2 * vPadding;
 
-    const chars = this.getCharPoints(this.word);
+    const chars = this.getCharPoints(word);
+    this.horizontalShear(chars);
+    this.keyTransform(chars);
 
-    const UImage = createGraphics(this.bounds.w + 2 * hPadding, this.bounds.h + 2 * vPadding);
+    const UImage = createGraphics(this.imageWidth, this.imageHeight);
 
     UImage.background(255, 100, 100);
-    UImage.translate(hPadding, this.bounds.h + vPadding);
-
-    this.horizontalShear(chars);
+    UImage.translate(hPadding, this.imageHeight - vPadding);
     this.drawChars(chars, UImage);
 
     const t1 = performance.now();
@@ -73,19 +75,32 @@ class WordP {
   }
 
   horizontalShear(chars) {
-    const wordHeight = this.bounds.h + 2 * WordP.FONT_SIZE / 3;
-    const shear = WordP.FONT_SIZE;
+    const shear = WordP.FONT_SIZE * random(0.5, 1);
+    const flip = (random() > 0.5) ? 1 : -1;
 
     for(let c = 0; c < chars.length; c++) {
       for (let i = 0; i < chars[c].length; i++) {
         const p = chars[c][i];
-        chars[c][i].x = map(p.y, 0, wordHeight, p.x, p.x + shear);
+        const sy = map(p.y, 0, this.imageHeight, 0, flip * shear);
+        chars[c][i].x = p.x + sy;
       }
     }
   }
 
-  keyTransform(src, dst) {}
-  waveShear(src, dst) {}
+  keyTransform(chars) {
+    const keystone = 0.555 * WordP.FONT_SIZE * random(0.5, 1);
+
+    for(let c = 0; c < chars.length; c++) {
+      for (let i = 0; i < chars[c].length; i++) {
+        const p = chars[c][i];
+        const sy = map(p.y, 0, this.imageHeight, -keystone, keystone);
+        const sx = map(p.x, 0, this.imageWidth, -1, 1);
+        chars[c][i].x = p.x + sy * sx;
+      }
+    }
+  }
+
+  waveShear(chars) {}
 }
 
 class Word {
