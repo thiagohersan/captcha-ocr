@@ -12,8 +12,8 @@ class Word {
     this.word = word;
     this.image = createGraphics(imageWidth, imageHeight);
 
-    this.horizontalShear(chars);
-    this.keyTransform(chars);
+    //this.horizontalShear(chars);
+    //this.keyTransform(chars);
     this.waveShear(chars);
     this.noiseShear(chars);
 
@@ -99,26 +99,28 @@ class Word {
   }
 
   waveShear(chars) {
-    const nWaves = this.word.length;
+    const ampY = 6 * random(0.5, 1);
+    const nWaves = random(this.word.length / 1.5, 1.5 * this.word.length);
+    const phase = random(-PI, PI);
     const deltaFreq = ['CONSTANT', 'INCREASING', 'DECREASING'][Math.floor(3 * Math.random())];
 
     for(let c = 0; c < chars.length; c++) {
-      const ampY = 6 * random(0.5, 1);
       for (let i = 0; i < chars[c].length; i++) {
         const p = chars[c][i];
-        chars[c][i].y = p.y - ampY * sin(PI * p.x * nWaves / this.image.width);
+        chars[c][i].y = p.y - ampY * sin(PI * p.x * nWaves / this.image.width + phase);
       }
     }
   }
 
   noiseShear(chars) {
-    const noiseScale = Word.FONT_SIZE / 1.6;
-    const maxChange = Word.FONT_SIZE / 2.0;
+    const noiseScale = Word.FONT_SIZE / .7;
+    const maxChange = Word.FONT_SIZE;
 
     for(let c = 0; c < chars.length; c++) {
+      const z = random(0, this.image.width);
       for (let i = 0; i < chars[c].length; i++) {
         const p = chars[c][i];
-        chars[c][i].x += maxChange * (0.5 - noise(p.x / noiseScale, p.y / noiseScale));
+        chars[c][i].x += maxChange * (0.5 - noise(p.x / noiseScale, p.y / noiseScale, z / noiseScale));
         chars[c][i].y += maxChange * (0.5 - noise(p.y / noiseScale, p.x / noiseScale));
       }
     }
