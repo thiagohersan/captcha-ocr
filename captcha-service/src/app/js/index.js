@@ -5,9 +5,7 @@ const EL = {};
 
 function preload() {
   Word.font = loadFont(FONT_FILE);
-  WordP.font = loadFont(FONT_FILE);
   Word.FONT_SIZE = FONT_SIZE;
-  WordP.FONT_SIZE = FONT_SIZE;
   EL.container = document.getElementById('my-canvas-container');
   EL.menu = document.getElementById('my-menu-container');
   EL.text = document.getElementById('my-input-text');
@@ -37,20 +35,19 @@ let mWords = [];
 function createCaptcha() {
   mWords = EL.text.value.split(' ').map(w => new Word(w));
 
-  const widthScale = 0.8;
-
-  const wordHeight = 0.7 * mWords[0].image.height;
+  const widthScale = 1.2;
+  const wordHeight = 0.75 * mWords[0].image.height;
   const totalWidth = mWords.reduce((acc, cw) => acc + cw.image.width, 0);
   const mDim = Math.ceil((Math.sqrt(wordHeight * totalWidth)) / wordHeight) * wordHeight;
 
-  const mCaptcha = createGraphics(mDim, mDim);
+  const mCaptcha = createGraphics(widthScale * mDim, 1.5 * mDim);
   mCaptcha.background(255, 0);
 
   let cX = -10;
   let cY = 0;
 
   mWords.forEach(w => {
-    if (cX + widthScale * w.image.width > mDim) {
+    if (cX + widthScale * w.image.width > mCaptcha.width) {
       cX = -10;
       cY += wordHeight;
     }
@@ -59,7 +56,8 @@ function createCaptcha() {
   });
 
   background(255);
-  image(mCaptcha, (width - mDim) / 2, 0);
+  image(mCaptcha, (width - mCaptcha.width) / 2, 0);
+  mCaptcha.remove();
 }
 
 function create1984Captcha() {
