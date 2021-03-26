@@ -16,6 +16,9 @@ functions:
           method: get
           cors: true
           path: /captcha
+    environment:
+      CAPTCHA_URL: ${param:CAPTCHA_URL}
+      CAPTCHA_SELECTORS: ${param:CAPTCHA_SELECTORS}
 
   compare:
     handler: src/functions/captcha.compare
