@@ -33,6 +33,9 @@ function windowResized() {
 let mWords = [];
 
 function createCaptcha() {
+  let captchaReady = document.getElementById('captcha-ready');
+  if(captchaReady) captchaReady.remove();
+
   mWords = EL.text.value.split(' ').map(w => new Word(w));
 
   const widthScale = 1.2;
@@ -58,6 +61,10 @@ function createCaptcha() {
   background(255);
   image(mCaptcha, 0.165 * width, 0, 0.66 * width, 0.66 * width);
   mCaptcha.remove();
+
+  captchaReady = document.createElement('div');
+  captchaReady.setAttribute('id', 'captcha-ready');
+  document.body.appendChild(captchaReady);
 }
 
 function create1984Captcha() {
