@@ -12,10 +12,10 @@ class Word {
     this.word = word;
     this.image = createGraphics(imageWidth, imageHeight);
 
-    //this.horizontalShear(chars);
-    //this.keyTransform(chars);
+    this.horizontalShear(chars);
+    this.keyTransform(chars);
     this.waveShear(chars);
-    this.noiseShear(chars);
+    //this.noiseShear(chars);
 
     this.image.background(255, 0);
     this.image.translate(hPadding, this.image.height - vPadding);
@@ -99,15 +99,17 @@ class Word {
   }
 
   waveShear(chars) {
-    const ampY = 6 * random(0.5, 1);
-    const nWaves = random(this.word.length / 1.5, 1.5 * this.word.length);
+    const ampHi = 4 * random(0.5, 1);
+    const ampLo = 12 * random(0.5, 1);
+    const nWavesLo = this.word.length / 2;
     const phase = random(-PI, PI);
-    const deltaFreq = ['CONSTANT', 'INCREASING', 'DECREASING'][Math.floor(3 * Math.random())];
 
     for(let c = 0; c < chars.length; c++) {
+      const nWavesHi = random(1.33 * this.word.length, 3.333 * this.word.length);
       for (let i = 0; i < chars[c].length; i++) {
         const p = chars[c][i];
-        chars[c][i].y = p.y - ampY * sin(PI * p.x * nWaves / this.image.width + phase);
+        chars[c][i].y = p.y - ampHi * sin(PI * p.x * nWavesHi / this.image.width + phase);
+        chars[c][i].y = p.y - ampLo * sin(PI * p.x * nWavesLo / this.image.width + phase);
       }
     }
   }
