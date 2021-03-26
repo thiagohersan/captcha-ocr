@@ -1,8 +1,11 @@
 'use strict';
 
-const utf8f = require('crypto-js').enc.Utf8;
+const encrypt = require('crypto-js').AES.encrypt;
 const decrypt = require('crypto-js').AES.decrypt;
+const utf8f = require('crypto-js').enc.Utf8;
 const compareTwoStrings = require('string-similarity').compareTwoStrings;
+
+const puppeteer = require('puppeteer');
 
 module.exports.compare = async (event, context) => {
   const body = JSON.parse(event.body);
@@ -23,14 +26,33 @@ module.exports.compare = async (event, context) => {
 }
 
 module.exports.image = async (event, context) => {
-  const success = true;
+  const SELECTORS = JSON.parse(process.env.CAPTCHA_SELECTORS);
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+  await page.setViewport({ width: 720, height: 720 });
+
+  await page.goto(process.env.CAPTCHA_URL);
+  await page.waitForSelector(SELECTORS.PAGE);
+  await page.click(SELECTORS.BUTTON);
+  await page.waitForSelector(SELECTORS.CAPTCHA_READY);
+
+  const phraseElement = await page.$(SELECTORS.PHRASE);
+  const phrase = await page.evaluate(el => el.value, phraseElement);
+
+  const canvasElement = await page.$(SELECTORS.CAPTCHA_CANVAS);
+  const dataUrl = await page.evaluate(el => el.toDataURL(), canvasElement);
+
+  browser.close();
+
+  const success = (phrase.length > 0) && (dataUrl.startsWith('data:image/png;base64,'));
+  const token = encrypt(phrase, process.env.THE_ANSWER).toString();
 
   return {
     statusCode: 200,
     body: JSON.stringify({
       success,
-      url: 'http://aaaaaaa.com/haha.jpg',
-      token: 'jaja191873hjsjjw72'
+      token,
+      image: dataUrl
     })
   }
 }
