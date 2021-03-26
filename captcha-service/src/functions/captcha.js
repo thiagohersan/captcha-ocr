@@ -5,7 +5,8 @@ const decrypt = require('crypto-js').AES.decrypt;
 const utf8f = require('crypto-js').enc.Utf8;
 const compareTwoStrings = require('string-similarity').compareTwoStrings;
 
-const puppeteer = require('puppeteer');
+const chrome = require('chrome-aws-lambda');
+
 
 module.exports.compare = async (event, context) => {
   const body = JSON.parse(event.body);
@@ -27,7 +28,7 @@ module.exports.compare = async (event, context) => {
 
 module.exports.image = async (event, context) => {
   const SELECTORS = JSON.parse(process.env.CAPTCHA_SELECTORS);
-  const browser = await puppeteer.launch();
+  const browser = await chrome.puppeteer.launch();
   const page = await browser.newPage();
   await page.setViewport({ width: 720, height: 720 });
 

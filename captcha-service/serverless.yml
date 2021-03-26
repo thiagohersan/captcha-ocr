@@ -7,6 +7,10 @@ provider:
   runtime: nodejs14.x
   stage: ${opt:stage, 'dev'}
   region: us-east-1
+  layers:
+    - arn:aws:lambda:${self:provider.region}:764866452798:layer:chrome-aws-lambda:10
+  memorySize: 2048
+  timeout: 30
 
 functions:
   image:
