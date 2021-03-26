@@ -7,14 +7,16 @@
     "test": "sls export-env; mocha --timeout 5000 ./src/tests"
   },
   "dependencies": {
+    "chrome-aws-lambda": "^8.0.0",
     "crypto-js": "^4.0.0",
+    "puppeteer-core": "^8.0.0",
     "string-similarity": "^4.0.4"
   },
   "devDependencies": {
     "aws-sdk": "^2.635.0",
     "aws-sdk-mock": "^5.0.0",
-    "chrome-aws-lambda": "^8.0.0",
     "dotenv": "^8.2.0",
+    "puppeteer": "^8.0.0",
     "serverless-export-env": "github:arabold/serverless-export-env",
     "serverless-mocha": "^1.12.0",
     "serverless-pseudo-parameters": "^2.5.0"

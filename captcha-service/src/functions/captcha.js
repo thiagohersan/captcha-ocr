@@ -7,7 +7,6 @@ const compareTwoStrings = require('string-similarity').compareTwoStrings;
 
 const chrome = require('chrome-aws-lambda');
 
-
 module.exports.compare = async (event, context) => {
   const body = JSON.parse(event.body);
   const phrase = toLower(body.phrase);
@@ -28,7 +27,14 @@ module.exports.compare = async (event, context) => {
 
 module.exports.image = async (event, context) => {
   const SELECTORS = JSON.parse(process.env.CAPTCHA_SELECTORS);
-  const browser = await chrome.puppeteer.launch();
+  const browser = await chrome.puppeteer.launch({
+    args: chrome.args,
+    defaultViewport: chrome.defaultViewport,
+    executablePath: await chrome.executablePath,
+    headless: true,
+    ignoreHTTPSErrors: true
+  });
+
   const page = await browser.newPage();
   await page.setViewport({ width: 720, height: 720 });
 
