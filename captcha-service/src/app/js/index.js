@@ -23,6 +23,9 @@ function setup() {
   smooth();
   noLoop();
   textSize(FONT_SIZE);
+  pageReady = document.createElement('div');
+  pageReady.setAttribute('id', 'page-ready');
+  document.body.appendChild(pageReady);
 }
 
 function windowResized() {
