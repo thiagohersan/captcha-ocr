@@ -1,5 +1,3 @@
-const PARAM_BLUR = 6;
-
 class Word {
   constructor(word) {
     const bounds = Word.font.textBounds(word, 0, 0, Word.FONT_SIZE);
@@ -7,7 +5,7 @@ class Word {
 
     this.word = word;
     this.graphic = createGraphics(bounds.w + 2 * Word.FONT_SIZE,
-                                bounds.h + 2 * Word.FONT_SIZE);
+                                  bounds.h + 2 * Word.FONT_SIZE);
 
     this.limits = {
       x: { min: 10000, max: -10000 },
@@ -23,7 +21,6 @@ class Word {
     this.graphic.background(255, 0);
     this.graphic.fill(0);
     this.drawChars(chars);
-    this.graphic.filter(BLUR, PARAM_BLUR);
 
     this.image = this.graphic.get();
     this.graphic.remove();

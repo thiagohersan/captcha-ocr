@@ -37,4 +37,5 @@ input {
 
 .captcha-canvas {
   margin: 0 auto;
+  filter: blur(2px);
 }
