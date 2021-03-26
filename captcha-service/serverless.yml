@@ -8,7 +8,7 @@ provider:
   stage: ${opt:stage, 'dev'}
   region: us-east-1
   layers:
-    - arn:aws:lambda:${self:provider.region}:764866452798:layer:chrome-aws-lambda:10
+    - arn:aws:lambda:${self:provider.region}:764866452798:layer:chrome-aws-lambda:22
   memorySize: 2048
   timeout: 30
 
