@@ -1,41 +1,48 @@
-const PARAM_BLUR = 1.6;
+const PARAM_BLUR = 6;
 
 class Word {
   constructor(word) {
-    const hPadding = Word.FONT_SIZE / 2;
-    const vPadding = Word.FONT_SIZE / 3;
     const bounds = Word.font.textBounds(word, 0, 0, Word.FONT_SIZE);
-    const imageWidth = bounds.w + 2 * hPadding;
-    const imageHeight = bounds.h + 2 * vPadding;
     const chars = this.getCharPoints(word);
 
     this.word = word;
-    this.image = createGraphics(imageWidth, imageHeight);
+    this.graphic = createGraphics(bounds.w + 2 * Word.FONT_SIZE,
+                                bounds.h + 2 * Word.FONT_SIZE);
+
+    this.limits = {
+      x: { min: 10000, max: -10000 },
+      y: { min: 10000, max: -10000 }
+    }
 
     this.horizontalShear(chars);
     this.keyTransform(chars);
     this.waveShear(chars);
-    //this.noiseShear(chars);
+    this.noiseShear(chars);
+    this.getLimits(chars);
 
-    this.image.background(255, 0);
-    this.image.translate(hPadding, this.image.height - vPadding);
-    this.image.fill(0);
+    this.graphic.background(255, 0);
+    this.graphic.fill(0);
     this.drawChars(chars);
-    this.image.filter(BLUR, PARAM_BLUR);
+    this.graphic.filter(BLUR, PARAM_BLUR);
 
-    const temp = this.image.get();
-    this.image.remove();
-    this.image = temp;
+    this.image = this.graphic.get();
+    this.graphic.remove();
+    this.graphic = null;
+    this.limits = null;
   }
 
   drawChars(chars) {
+    const padding = Word.FONT_SIZE / 6;
+
     for(let c = 0; c < chars.length; c++) {
-      this.image.beginShape();
+      this.graphic.beginShape();
       for (let i = 0; i < chars[c].length; i++) {
         const p = chars[c][i];
-        vertex(p.x, p.y);
+        const mx = map(p.x, this.limits.x.min, this.limits.x.max, padding, this.graphic.width - padding);
+        const my = map(p.y, this.limits.y.min, this.limits.y.max, padding, this.graphic.height - padding);
+        vertex(mx, my);
       }
-      this.image.endShape();
+      this.graphic.endShape();
     }
   }
 
@@ -71,6 +78,18 @@ class Word {
     return chars;
   }
 
+  getLimits(chars) {
+    for(let c = 0; c < chars.length; c++) {
+      for (let i = 0; i < chars[c].length; i++) {
+        const p = chars[c][i];
+        if(p.x > this.limits.x.max) this.limits.x.max = p.x;
+        if(p.x < this.limits.x.min) this.limits.x.min = p.x;
+        if(p.y > this.limits.y.max) this.limits.y.max = p.y;
+        if(p.y < this.limits.y.min) this.limits.y.min = p.y;
+      }
+    }
+  }
+
   horizontalShear(chars) {
     const shear = 0.3333 * Word.FONT_SIZE * random(0.5, 1);
     const flip = (random() > 0.5) ? 1 : -1;
@@ -78,7 +97,7 @@ class Word {
     for(let c = 0; c < chars.length; c++) {
       for (let i = 0; i < chars[c].length; i++) {
         const p = chars[c][i];
-        const sy = map(p.y, 0, this.image.height, 0, flip * shear);
+        const sy = map(p.y, 0, this.graphic.height, 0, flip * shear);
         chars[c][i].x = p.x + sy;
       }
     }
@@ -91,8 +110,8 @@ class Word {
     for(let c = 0; c < chars.length; c++) {
       for (let i = 0; i < chars[c].length; i++) {
         const p = chars[c][i];
-        const sy = map(p.y, 0, this.image.height, -keystone, keystone);
-        const sx = map(p.x, 0, this.image.width, -flip, flip);
+        const sy = map(p.y, 0, this.graphic.height, -keystone, keystone);
+        const sx = map(p.x, 0, this.graphic.width, -flip, flip);
         chars[c][i].x = p.x + sy * sx;
       }
     }
@@ -108,18 +127,18 @@ class Word {
       const nWavesHi = random(1.33 * this.word.length, 3.333 * this.word.length);
       for (let i = 0; i < chars[c].length; i++) {
         const p = chars[c][i];
-        chars[c][i].y = p.y - ampHi * sin(PI * p.x * nWavesHi / this.image.width + phase);
-        chars[c][i].y = p.y - ampLo * sin(PI * p.x * nWavesLo / this.image.width + phase);
+        chars[c][i].y = p.y - ampHi * sin(PI * p.x * nWavesHi / this.graphic.width + phase);
+        chars[c][i].y = p.y - ampLo * sin(PI * p.x * nWavesLo / this.graphic.width + phase);
       }
     }
   }
 
   noiseShear(chars) {
     const noiseScale = Word.FONT_SIZE / .7;
-    const maxChange = Word.FONT_SIZE;
+    const maxChange = Word.FONT_SIZE / 2;
 
     for(let c = 0; c < chars.length; c++) {
-      const z = random(0, this.image.width);
+      const z = random(0, this.graphic.width);
       for (let i = 0; i < chars[c].length; i++) {
         const p = chars[c][i];
         chars[c][i].x += maxChange * (0.5 - noise(p.x / noiseScale, p.y / noiseScale, z / noiseScale));

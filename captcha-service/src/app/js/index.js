@@ -36,19 +36,19 @@ function createCaptcha() {
   mWords = EL.text.value.split(' ').map(w => new Word(w));
 
   const widthScale = 1.2;
-  const wordHeight = 0.75 * mWords[0].image.height;
+  const wordHeight = 1.2 * mWords[0].image.height;
   const totalWidth = mWords.reduce((acc, cw) => acc + cw.image.width, 0);
-  const mDim = Math.ceil((Math.sqrt(wordHeight * totalWidth)) / wordHeight) * wordHeight;
+  const mDim = widthScale * Math.ceil((Math.sqrt(wordHeight * totalWidth)) / wordHeight) * wordHeight;
 
-  const mCaptcha = createGraphics(widthScale * mDim, 1.5 * mDim);
-  mCaptcha.background(255, 0);
+  const mCaptcha = createGraphics(mDim, mDim);
+  mCaptcha.background(255);
 
-  let cX = -10;
+  let cX = 0;
   let cY = 0;
 
   mWords.forEach(w => {
     if (cX + widthScale * w.image.width > mCaptcha.width) {
-      cX = -10;
+      cX = 0;
       cY += wordHeight;
     }
     mCaptcha.image(w.image, cX, cY);
@@ -56,7 +56,7 @@ function createCaptcha() {
   });
 
   background(255);
-  image(mCaptcha, (width - mCaptcha.width) / 2, 0);
+  image(mCaptcha, 0.165 * width, 0, 0.66 * width, 0.66 * width);
   mCaptcha.remove();
 }
 
