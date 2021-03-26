@@ -63,13 +63,10 @@ function createCaptcha() {
     cX += widthScale * w.image.width;
   });
 
-  const captchaMaxDim = Math.max(maxX, cY + wordHeight);
-  const scale = width / captchaMaxDim;
-  const captchaWidth = scale * maxX;
-  const captchaHeight = scale * (cY + wordHeight);
-
+  resizeCanvas(maxX, cY + wordHeight);
   background(255);
-  image(mCaptcha, (width - captchaWidth) / 2, (height - captchaHeight) / 2, width, width);
+  image(mCaptcha, 0, 0);
+
   mCaptcha.remove();
 
   captchaReady = document.createElement('div');
