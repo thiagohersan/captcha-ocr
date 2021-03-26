@@ -23,6 +23,7 @@ functions:
     environment:
       CAPTCHA_URL: ${param:CAPTCHA_URL}
       CAPTCHA_SELECTORS: ${param:CAPTCHA_SELECTORS}
+      THE_ANSWER: ${param:THE_ANSWER}
 
   compare:
     handler: src/functions/captcha.compare
