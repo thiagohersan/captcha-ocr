@@ -42,7 +42,7 @@ function createCaptcha() {
   mWords = EL.text.value.split(' ').map(w => new Word(w));
 
   const widthScale = 1.2;
-  const wordHeight = 1.2 * mWords[0].image.height;
+  const wordHeight = 1.15 * mWords[0].image.height;
   const totalWidth = mWords.reduce((acc, cw) => acc + cw.image.width, 0);
   const mDim = widthScale * Math.ceil((Math.sqrt(wordHeight * totalWidth)) / wordHeight) * wordHeight;
 
@@ -51,9 +51,11 @@ function createCaptcha() {
 
   let cX = 0;
   let cY = 0;
+  let maxX = 0;
 
   mWords.forEach(w => {
     if (cX + widthScale * w.image.width > mCaptcha.width) {
+      if (cX > maxX) maxX = cX;
       cX = 0;
       cY += wordHeight;
     }
@@ -61,8 +63,13 @@ function createCaptcha() {
     cX += widthScale * w.image.width;
   });
 
+  const captchaMaxDim = Math.max(maxX, cY + wordHeight);
+  const scale = width / captchaMaxDim;
+  const captchaWidth = scale * maxX;
+  const captchaHeight = scale * (cY + wordHeight);
+
   background(255);
-  image(mCaptcha, 0.165 * width, 0, 0.66 * width, 0.66 * width);
+  image(mCaptcha, (width - captchaWidth) / 2, (height - captchaHeight) / 2, width, width);
   mCaptcha.remove();
 
   captchaReady = document.createElement('div');
