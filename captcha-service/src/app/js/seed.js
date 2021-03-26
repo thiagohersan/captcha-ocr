@@ -39,3 +39,5 @@ const seedPhrases = [
     phrases: {}
   }
 ]
+
+if (typeof module !== 'undefined') module.exports.seed = seedPhrases;
