@@ -9,8 +9,8 @@ provider:
   region: us-east-1
   layers:
     - arn:aws:lambda:${self:provider.region}:764866452798:layer:chrome-aws-lambda:22
-  memorySize: 2048
-  timeout: 30
+  memorySize: 1024
+  timeout: 16
 
 functions:
   image:
