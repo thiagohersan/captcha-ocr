@@ -23,7 +23,7 @@ functions:
           cors: true
           path: /captcha
     environment:
-      CAPTCHA_URL: ${param:CAPTCHA_URL}
+      CAPTCHA_URL: http://${self:custom.s3BucketName}.s3-website-${self:provider.region}.amazonaws.com/
       CAPTCHA_SELECTORS: ${param:CAPTCHA_SELECTORS}
       THE_ANSWER: ${param:THE_ANSWER}
 
@@ -41,11 +41,39 @@ functions:
       SUCCESS_URL: ${param:SUCCESS_URL}
       THE_ANSWER: ${param:THE_ANSWER}
 
+resources:
+  Resources:
+    WebAppS3Bucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: ${self:custom.s3BucketName}
+        AccessControl: PublicRead
+        WebsiteConfiguration:
+          IndexDocument: index.html
+          ErrorDocument: index.html
+    ## Specifying the policies to make sure all files inside the Bucket are avaialble to CloudFront
+    WebAppS3BucketPolicy:
+      Type: AWS::S3::BucketPolicy
+      Properties:
+        Bucket:
+          Ref: WebAppS3Bucket
+        PolicyDocument:
+          Statement:
+            - Sid: PublicReadGetObject
+              Effect: Allow
+              Principal: "*"
+              Action:
+              - s3:GetObject
+              Resource: arn:aws:s3:::${self:custom.s3BucketName}/*
+
 custom:
-  s3Bucket: captcha-service-gen
+  s3BucketName: captcha-service-gen
+  s3Sync:
+    - bucketName: ${self:custom.s3BucketName}
+      localDir: src/app/
 
 plugins:
   - serverless-pseudo-parameters
   - serverless-mocha
   - serverless-export-env
-  - serverless-single-page-app-plugin
+  - serverless-s3-sync

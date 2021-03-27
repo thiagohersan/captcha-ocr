@@ -13,7 +13,7 @@ const seedPhrases = [
         'You will be hollow. We shall squeeze you empty, and then we shall fill you with ourselves.',
         'If you want to keep a secret you must also hide it from yourself.',
         'The object of waging a war is always to be in a better position in which to wage another war.',
-        'WAR IS PEACE. FREEDOM IS SLAVERY. IGNORANCE IS STRENGTH'
+        'WAR IS PEACE. FREEDOM IS SLAVERY. IGNORANCE IS STRENGTH.'
       ],
       pt: [
         'Talvez não quisesse ser tão estimado quanto compreendido.',
