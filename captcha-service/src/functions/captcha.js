@@ -13,7 +13,7 @@ module.exports.compare = async (event, context) => {
   const answer  = toLower(decrypt(body.token,
                                   process.env.THE_ANSWER).toString(utf8f));
 
-  const success = (compareTwoStrings(phrase, answer) > 0.95);
+  const success = (compareTwoStrings(phrase, answer) > 0.98);
   const url = success ? process.env.SUCCESS_URL : '';
 
   return {
