@@ -99,6 +99,15 @@ window.addEventListener('load', () => {
     centerOnClick(EL.captchaContainer, event);
     EL.overlay.style.opacity = '1';
   });
+
+  EL.overlay.addEventListener('click', (event) => {
+    EL.overlay.style.opacity = '0';
+    EL.overlay.style.pointerEvents = 'none';
+  });
+
+  EL.captchaContainer.addEventListener('click', (event) => {
+    event.stopPropagation();
+  });
 });
 
 function centerOnClick(el, event) {
