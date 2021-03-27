@@ -39,7 +39,7 @@ function createCaptcha() {
   let captchaReady = document.getElementById('captcha-ready');
   if(captchaReady) captchaReady.remove();
 
-  mWords = EL.text.value.split(' ').map(w => new Word(w));
+  mWords = EL.text.value.trim().replace(/ +/g, ' ').split(' ').map(w => new Word(w));
 
   const widthScale = 1.2;
   const wordHeight = 1.15 * mWords[0].image.height;
