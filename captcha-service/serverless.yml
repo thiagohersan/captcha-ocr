@@ -1,12 +1,14 @@
 org: thersan
-app: captcha-ocr-app
-service: captcha-ocr-service
+app: captcha-ocr
+service: captcha-service
+frameworkVersion: '2'
 
 provider:
   name: aws
   runtime: nodejs14.x
   stage: ${opt:stage, 'dev'}
   region: us-east-1
+  lambdaHashingVersion: 20201221
   layers:
     - arn:aws:lambda:${self:provider.region}:764866452798:layer:chrome-aws-lambda:22
   memorySize: 640
@@ -33,20 +35,17 @@ functions:
           cors: true
           path: /captcha
           request:
-            schema:
+            schemas:
               application/json: ${file(src/schema/compare_phrase_request.json)}
     environment:
       SUCCESS_URL: ${param:SUCCESS_URL}
       THE_ANSWER: ${param:THE_ANSWER}
 
 custom:
-  siteName: captcha-gen
-  s3Sync:
-    - bucketName: ${self:custom.siteName}
-      localDir: src/app
+  s3Bucket: captcha-service-gen
 
 plugins:
   - serverless-pseudo-parameters
   - serverless-mocha
   - serverless-export-env
-  - serverless-s3-sync
+  - serverless-single-page-app-plugin
