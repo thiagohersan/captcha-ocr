@@ -14,7 +14,7 @@ module.exports.compare = async (event, context) => {
                                   process.env.THE_ANSWER).toString(utf8f));
 
   const success = (compareTwoStrings(phrase, answer) > 0.9);
-  const url = success ? process.env.SUCCESS_URL : process.env.FAIL_URL;
+  const url = success ? process.env.SUCCESS_URL : '';
 
   return {
     statusCode: 200,

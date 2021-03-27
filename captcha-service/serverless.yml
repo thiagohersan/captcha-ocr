@@ -1,6 +1,6 @@
 org: thersan
-app: captcha-ocr
-service: captcha-service
+app: captcha-ocr-app
+service: captcha-ocr-service
 
 provider:
   name: aws
@@ -37,11 +37,16 @@ functions:
               application/json: ${file(src/schema/compare_phrase_request.json)}
     environment:
       SUCCESS_URL: ${param:SUCCESS_URL}
-      FAIL_URL: ${param:FAIL_URL}
       THE_ANSWER: ${param:THE_ANSWER}
-      
+
+custom:
+  siteName: captcha-gen
+  s3Sync:
+    - bucketName: ${self:custom.siteName}
+      localDir: src/app
 
 plugins:
   - serverless-pseudo-parameters
   - serverless-mocha
   - serverless-export-env
+  - serverless-s3-sync
