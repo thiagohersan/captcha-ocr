@@ -43,7 +43,7 @@ mHttpPost.onreadystatechange = (err) => {
   if (mHttpPost.readyState == 4 && mHttpPost.status == 200) {
     const res = JSON.parse(mHttpPost.responseText);
     if(res.success && res.url.length > 0) {
-      console.log('SUCESSO. ACESSANDO PAGINA');
+      console.log('SUCCESS ! SHOULD REDIRECT SOON !');
       // TODO: go to url
     } else {
       if(!nextCaptcha.ready) {
