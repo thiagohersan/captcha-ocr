@@ -70,7 +70,7 @@ custom:
   s3BucketName: captcha-service-gen
   s3Sync:
     - bucketName: ${self:custom.s3BucketName}
-      localDir: service/app/
+      localDir: app/
 
 plugins:
   - serverless-mocha

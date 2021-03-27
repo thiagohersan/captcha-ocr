@@ -5,7 +5,7 @@ const decrypt = require('crypto-js').AES.decrypt;
 const utf8f = require('crypto-js').enc.Utf8;
 const env = require('dotenv').config({ path: path.join(__dirname, '..', '..', '.env') });
 
-const seed = require(path.join(__dirname, '..', 'app', 'js', 'seed.js')).seed;
+const seed = require(path.join(__dirname, '..', '..', 'app', 'js', 'seed.js')).seed;
 
 const mochaPlugin = require('serverless-mocha');
 const expect = require('serverless-mocha').chai.expect;
