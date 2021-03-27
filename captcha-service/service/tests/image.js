@@ -11,7 +11,7 @@ const mochaPlugin = require('serverless-mocha');
 const expect = require('serverless-mocha').chai.expect;
 const getWrapper = require('serverless-mocha').getWrapper;
 
-const wrapped = mochaPlugin.getWrapper('image', '../../../src/functions/captcha.js', 'image');
+const wrapped = mochaPlugin.getWrapper('image', '../../../service/functions/captcha.js', 'image');
 
 describe('image', () => {
   let body;

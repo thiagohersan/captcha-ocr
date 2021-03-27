@@ -16,7 +16,7 @@ provider:
 
 functions:
   image:
-    handler: src/functions/captcha.image
+    handler: service/functions/captcha.image
     events:
       - http:
           method: get
@@ -28,7 +28,7 @@ functions:
       THE_ANSWER: ${param:THE_ANSWER}
 
   compare:
-    handler: src/functions/captcha.compare
+    handler: service/functions/captcha.compare
     events:
       - http:
           method: post
@@ -36,7 +36,7 @@ functions:
           path: /captcha
           request:
             schemas:
-              application/json: ${file(src/schema/compare_phrase_request.json)}
+              application/json: ${file(service/schema/compare_phrase_request.json)}
     environment:
       SUCCESS_URL: ${param:SUCCESS_URL}
       THE_ANSWER: ${param:THE_ANSWER}
@@ -70,7 +70,7 @@ custom:
   s3BucketName: captcha-service-gen
   s3Sync:
     - bucketName: ${self:custom.s3BucketName}
-      localDir: src/app/
+      localDir: service/app/
 
 plugins:
   - serverless-mocha

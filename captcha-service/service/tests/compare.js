@@ -8,7 +8,7 @@ const mochaPlugin = require('serverless-mocha');
 const expect = require('serverless-mocha').chai.expect;
 const getWrapper = require('serverless-mocha').getWrapper;
 
-const wrapped = getWrapper('compare', '../../../src/functions/captcha.js', 'compare');
+const wrapped = getWrapper('compare', '../../../service/functions/captcha.js', 'compare');
 
 describe('compare', () => {
   before((done) => {

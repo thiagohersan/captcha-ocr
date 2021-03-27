@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "scripts": {
     "deploy": "sls deploy",
-    "test": "sls export-env; mocha --timeout 5000 ./src/tests"
+    "test": "sls export-env; mocha --timeout 5000 ./service/tests"
   },
   "dependencies": {
     "chrome-aws-lambda": "^8.0.0",

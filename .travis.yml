@@ -13,7 +13,7 @@ branches:
 script:
   - echo "test if deploy"
   - LATEST_COMMIT=$(git log -1 --format=format:%H --full-diff .)
-  - LATEST_APP_COMMIT=$(git log -1 --format=format:%H --full-diff ./captcha-service/src/app)
+  - LATEST_APP_COMMIT=$(git log -1 --format=format:%H --full-diff ./captcha-service/service/app)
   - |
     if [[ $LATEST_COMMIT == $LATEST_APP_COMMIT ]]
     then
@@ -33,7 +33,7 @@ after_script:
       git checkout --orphan gh-pages
       git rm --cached -rf .
 
-      mv captcha-service/src/app/* .
+      mv captcha-service/service/app/* .
       rm -rf 1984 captcha-service
 
       git add index.html index.css fonts js
