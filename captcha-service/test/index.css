@@ -49,6 +49,7 @@
 .captcha-input {
   width: 100%;
   box-sizing: border-box;
+  outline: none;
 }
 
 .captcha-button {
