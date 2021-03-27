@@ -1,3 +1,6 @@
+// from:
+//   https://bookriot.com/1984-quotes/
+
 const seedPhrases = [
   {
     book: '1984',

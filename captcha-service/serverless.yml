@@ -73,7 +73,6 @@ custom:
       localDir: src/app/
 
 plugins:
-  - serverless-pseudo-parameters
   - serverless-mocha
   - serverless-export-env
   - serverless-s3-sync
