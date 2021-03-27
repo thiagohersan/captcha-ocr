@@ -18,7 +18,7 @@ script:
     if [[ $LATEST_COMMIT == $LATEST_APP_COMMIT ]]
     then
       echo "Deploy App"
-      DEPLOY_APP=true
+      # DEPLOY_APP=true
     fi
 
 after_script:
