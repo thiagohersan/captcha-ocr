@@ -13,19 +13,19 @@ branches:
 script:
   - echo "test if deploy"
   - LATEST_COMMIT=$(git log -1 --format=format:%H --full-diff .)
-  - LATEST_APP_COMMIT=$(git log -1 --format=format:%H --full-diff ./captcha-service/app)
+  - LATEST_SITE_COMMIT=$(git log -1 --format=format:%H --full-diff ./captcha-service/test)
   - |
-    if [[ $LATEST_COMMIT == $LATEST_APP_COMMIT ]]
+    if [[ $LATEST_COMMIT == $LATEST_SITE_COMMIT ]]
     then
-      echo "Deploy App"
-      # DEPLOY_APP=true
+      echo "Deploy Test Site"
+      DEPLOY_SITE=true
     fi
 
 after_script:
   - |
-    if [[ $DEPLOY_APP = true ]]
+    if [[ $DEPLOY_SITE = true ]]
     then
-      echo "Deploying App"
+      echo "Deploying Test Site"
 
       git config user.name $GHUSER
       git config user.email $GHEMAIL
@@ -33,10 +33,10 @@ after_script:
       git checkout --orphan gh-pages
       git rm --cached -rf .
 
-      mv captcha-service/app/* .
+      mv captcha-service/test/index.* .
       rm -rf 1984 captcha-service
 
-      git add index.html index.css fonts js
+      git add index.*
       git commit -m "update site"
       git remote add origin-pages https://thiagohersan:$GHTOKEN@github.com/thiagohersan/captcha-ocr.git
       git push origin-pages :gh-pages
