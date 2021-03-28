@@ -13,6 +13,9 @@ provider:
     - arn:aws:lambda:${self:provider.region}:764866452798:layer:chrome-aws-lambda:22
   memorySize: 640
   timeout: 16
+  environment:
+    CORS_ORIGINS: ${param:CORS_ORIGINS}
+    THE_ANSWER: ${param:THE_ANSWER}
 
 functions:
   image:
@@ -25,7 +28,6 @@ functions:
     environment:
       CAPTCHA_URL: http://${self:custom.s3BucketName}.s3-website-${self:provider.region}.amazonaws.com/
       CAPTCHA_SELECTORS: ${param:CAPTCHA_SELECTORS}
-      THE_ANSWER: ${param:THE_ANSWER}
 
   compare:
     handler: service/functions/captcha.compare
@@ -39,7 +41,6 @@ functions:
               application/json: ${file(service/schema/compare_phrase_request.json)}
     environment:
       SUCCESS_URL: ${param:SUCCESS_URL}
-      THE_ANSWER: ${param:THE_ANSWER}
 
 resources:
   Resources:
