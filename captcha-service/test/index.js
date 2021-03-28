@@ -93,20 +93,31 @@ window.addEventListener('load', () => {
   EL.captchaButton.classList.add('captcha-button');
   EL.captchaContainer.appendChild(EL.captchaButton);
 
+  EL.link.addEventListener('click', (event) => {
+    showCaptcha(event);
+  });
+
   EL.captchaButton.addEventListener('click', (event) => {
     if(thisCaptcha.ready) checkCaptcha();
   });
 
-  EL.link.addEventListener('click', (event) => {
-    showCaptcha(EL.captchaContainer, event);
-  });
-
   EL.overlay.addEventListener('click', (event) => {
-    EL.overlay.classList.remove('show');
+    hideCaptcha();
   });
 
   EL.captchaContainer.addEventListener('click', (event) => {
     event.stopPropagation();
+  });
+
+  document.body.addEventListener('keydown', (event) => {
+    if (!EL.overlay.classList.contains('show')) return;
+
+    if (event.key === 'Escape') {
+      hideCaptcha();
+    } else if (event.key === 'Enter') {
+      event.preventDefault();
+      if(thisCaptcha.ready && EL.captchaButton.classList.contains('show')) checkCaptcha();
+    }
   });
 });
 
@@ -123,6 +134,12 @@ function showCaptcha(event) {
   EL.captchaContainer.style.left =  constrain(centerLeft, padding, maxLeft - padding) + 'px';
   EL.captchaContainer.style.top =  constrain(centerTop, padding, maxTop - padding) + 'px';
   EL.overlay.classList.add('show');
+  EL.captchaInput.focus();
+  EL.captchaInput.setSelectionRange(0, 0);
+}
+
+function hideCaptcha() {
+  EL.overlay.classList.remove('show');
 }
 
 function getCaptcha() {
@@ -145,7 +162,7 @@ function setImage(img64) {
   EL.captchaButton.classList.add('show');
 }
 
-function unsetImage(el) {
+function unsetImage() {
   EL.captchaImage.style.backgroundImage = '';
   EL.loader.classList.add('show');
   EL.captchaButton.classList.remove('show');
