@@ -18,7 +18,7 @@
   opacity: 0;
   transition: opacity .12s linear;
 }
-.overlay.enabled {
+.overlay.show {
   pointer-events: all;
   opacity: 1;
 }
@@ -41,8 +41,10 @@
 .captcha-image {
   width: 100%;
   padding: 0;
-  padding-bottom: 100%;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   box-sizing: border-box;
   background-position: center center;
   background-size: contain;
@@ -62,7 +64,59 @@
   pointer-events: none;
   opacity: 0.4;
 }
-.captcha-button.enabled {
+.captcha-button.show {
   pointer-events: all;
   opacity: 1;
+}
+
+.loader {
+  position: absolute;
+  font-size: 10px;
+  margin: 0 auto;
+  text-indent: -9999em;
+  width: 4vw;
+  height: 4vw;
+  border-radius: 50%;
+  background: #222;
+  background: linear-gradient(to right, rgba(34, 34, 34, 1) 10%, rgba(34, 34, 34, 0) 42%);
+  position: relative;
+  animation: load-spin 1.4s infinite linear;
+  transform: translateZ(0);
+  box-sizing: border-box;
+  pointer-events: none;
+  opacity: 0;
+}
+.loader.show {
+  pointer-events: all;
+  opacity: 1;
+}
+
+.loader:before {
+  width: 50%;
+  height: 50%;
+  background: #222;
+  border-radius: 100% 0 0 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '';
+}
+
+.loader:after {
+  background: #fff;
+  width: 75%;
+  height: 75%;
+  border-radius: 50%;
+  content: '';
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+@keyframes load-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }

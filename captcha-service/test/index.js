@@ -41,13 +41,15 @@ mHttpGet.onreadystatechange = (err) => {
 mHttpPost.onreadystatechange = (err) => {
   if (mHttpPost.readyState == 4 && mHttpPost.status == 200) {
     const res = JSON.parse(mHttpPost.responseText);
+    EL.captchaInput.value = '';
+
     if(res.success && res.url.length > 0) {
       window.location.href = res.url;
     } else {
-      EL.captchaInput.value = '';
       if(!nextCaptcha.ready) {
         thisCaptcha.ready = false;
-        EL.captchaButton.classList.remove('enabled');
+        unsetImage(EL.captchaImage);
+        EL.captchaButton.classList.remove('show');
       } else {
         thisCaptcha.ready = nextCaptcha.ready;
         thisCaptcha.token = nextCaptcha.token;
@@ -74,6 +76,11 @@ window.addEventListener('load', () => {
   EL.captchaImage = document.createElement('div');
   EL.captchaImage.classList.add('captcha-image');
   EL.captchaContainer.appendChild(EL.captchaImage);
+  EL.captchaImage.style.height = window.getComputedStyle(EL.captchaImage).getPropertyValue('width');
+
+  EL.loader = document.createElement('div');
+  EL.loader.classList.add('loader', 'show');
+  EL.captchaImage.appendChild(EL.loader);
 
   EL.captchaInput = document.createElement('input');
   EL.captchaInput.setAttribute('type', 'text');
@@ -95,7 +102,7 @@ window.addEventListener('load', () => {
   });
 
   EL.overlay.addEventListener('click', (event) => {
-    EL.overlay.classList.remove('enabled');
+    EL.overlay.classList.remove('show');
   });
 
   EL.captchaContainer.addEventListener('click', (event) => {
@@ -115,7 +122,7 @@ function showCaptcha(el, event) {
   const centerTop = (event.clientY - el.offsetHeight / 2);
   el.style.left =  constrain(centerLeft, padding, maxLeft - padding) + 'px';
   el.style.top =  constrain(centerTop, padding, maxTop - padding) + 'px';
-  EL.overlay.classList.add('enabled');
+  EL.overlay.classList.add('show');
 }
 
 function getCaptcha() {
@@ -124,7 +131,7 @@ function getCaptcha() {
 }
 
 function checkCaptcha() {
-  EL.captchaButton.classList.remove('enabled');
+  EL.captchaButton.classList.remove('show');
   mHttpPost.open('POST', API_URL);
   mHttpPost.send(JSON.stringify({
     token: thisCaptcha.token,
@@ -133,6 +140,13 @@ function checkCaptcha() {
 }
 
 function setImage(el, img64) {
+  EL.loader.classList.remove('show');
   el.style.backgroundImage = `url("${img64}")`;
-  EL.captchaButton.classList.add('enabled');
+  EL.captchaButton.classList.add('show');
+}
+
+function unsetImage(el) {
+  el.style.backgroundImage = '';
+  EL.loader.classList.add('show');
+  EL.captchaButton.classList.remove('show');
 }
