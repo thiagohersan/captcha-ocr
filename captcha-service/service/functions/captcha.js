@@ -84,5 +84,5 @@ function checkOrigin(headers) {
 }
 
 function toLower(str) {
-  return str.replace(/ /g, '').toLowerCase();
+  return str.replace(/[ .,!]/g, '').toLowerCase();
 }
