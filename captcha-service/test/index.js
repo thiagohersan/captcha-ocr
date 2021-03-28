@@ -27,7 +27,7 @@ mHttpGet.onreadystatechange = (err) => {
         thisCaptcha.ready = true;
         thisCaptcha.token = res.token;
         thisCaptcha.image = res.image;
-        setImage(EL.captchaImage, thisCaptcha.image);
+        setImage(thisCaptcha.image);
         getCaptcha();
       } else {
         nextCaptcha.ready = true;
@@ -48,14 +48,14 @@ mHttpPost.onreadystatechange = (err) => {
     } else {
       if(!nextCaptcha.ready) {
         thisCaptcha.ready = false;
-        unsetImage(EL.captchaImage);
+        unsetImage();
         EL.captchaButton.classList.remove('show');
       } else {
         thisCaptcha.ready = nextCaptcha.ready;
         thisCaptcha.token = nextCaptcha.token;
         thisCaptcha.image = nextCaptcha.image;
         nextCaptcha.ready = false;
-        setImage(EL.captchaImage, thisCaptcha.image);
+        setImage(thisCaptcha.image);
       }
       getCaptcha();
     }
@@ -114,14 +114,14 @@ function constrain(v, min, max) {
   return Math.max(min, Math.min(max, v));
 }
 
-function showCaptcha(el, event) {
+function showCaptcha(event) {
   const padding = 5;
-  const maxLeft = EL.overlay.offsetWidth - el.offsetWidth;
-  const maxTop = EL.overlay.offsetHeight - el.offsetHeight;
-  const centerLeft = (event.clientX - el.offsetWidth / 2);
-  const centerTop = (event.clientY - el.offsetHeight / 2);
-  el.style.left =  constrain(centerLeft, padding, maxLeft - padding) + 'px';
-  el.style.top =  constrain(centerTop, padding, maxTop - padding) + 'px';
+  const maxLeft = EL.overlay.offsetWidth - EL.captchaContainer.offsetWidth;
+  const maxTop = EL.overlay.offsetHeight - EL.captchaContainer.offsetHeight;
+  const centerLeft = (event.clientX - EL.captchaContainer.offsetWidth / 2);
+  const centerTop = (event.clientY - EL.captchaContainer.offsetHeight / 2);
+  EL.captchaContainer.style.left =  constrain(centerLeft, padding, maxLeft - padding) + 'px';
+  EL.captchaContainer.style.top =  constrain(centerTop, padding, maxTop - padding) + 'px';
   EL.overlay.classList.add('show');
 }
 
@@ -139,14 +139,14 @@ function checkCaptcha() {
   }));
 }
 
-function setImage(el, img64) {
+function setImage(img64) {
   EL.loader.classList.remove('show');
-  el.style.backgroundImage = `url("${img64}")`;
+  EL.captchaImage.style.backgroundImage = `url("${img64}")`;
   EL.captchaButton.classList.add('show');
 }
 
 function unsetImage(el) {
-  el.style.backgroundImage = '';
+  EL.captchaImage.style.backgroundImage = '';
   EL.loader.classList.add('show');
   EL.captchaButton.classList.remove('show');
 }
