@@ -82,8 +82,8 @@ window.addEventListener('load', () => {
   EL.loader.classList.add('loader', 'show');
   EL.captchaImage.appendChild(EL.loader);
 
-  EL.captchaInput = document.createElement('input');
-  EL.captchaInput.setAttribute('type', 'text');
+  EL.captchaInput = document.createElement('textarea');
+  EL.captchaInput.setAttribute('rows', '3');
   EL.captchaInput.classList.add('captcha-input');
   EL.captchaContainer.appendChild(EL.captchaInput);
 
