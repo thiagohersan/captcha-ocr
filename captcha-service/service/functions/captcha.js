@@ -18,6 +18,10 @@ module.exports.compare = async (event, context) => {
 
   return {
     statusCode: 200,
+    headers: {
+      'Access-Control-Allow-Origin': checkOrigin(event.headers),
+      'Access-Control-Allow-Credentials': true
+    },
     body: JSON.stringify({
       success,
       url
@@ -56,12 +60,27 @@ module.exports.image = async (event, context) => {
 
   return {
     statusCode: 200,
+    headers: {
+      'Access-Control-Allow-Origin': checkOrigin(event.headers),
+      'Access-Control-Allow-Credentials': true
+    },
     body: JSON.stringify({
       success,
       token,
       image: dataUrl
     })
   }
+}
+
+function checkOrigin(headers) {
+  const CORS_ORIGINS = JSON.parse(process.env.CORS_ORIGINS);
+  if(!headers) return CORS_ORIGINS[0];
+  const reqOrigin = headers.origin || headers.Origin || '';
+
+  for (const origin of CORS_ORIGINS) {
+    if (reqOrigin.includes(origin)) return origin;
+  }
+  return CORS_ORIGINS[0];
 }
 
 function toLower(str) {
