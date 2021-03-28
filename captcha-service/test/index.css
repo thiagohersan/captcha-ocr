@@ -18,6 +18,10 @@
   opacity: 0;
   transition: opacity .12s linear;
 }
+.overlay.enabled {
+  pointer-events: all;
+  opacity: 1;
+}
 
 .captcha-container {
   width: 40vw;
@@ -55,4 +59,10 @@
 .captcha-button {
   width: 40%;
   cursor: pointer;
+  pointer-events: none;
+  opacity: 0.4;
+}
+.captcha-button.enabled {
+  pointer-events: all;
+  opacity: 1;
 }
