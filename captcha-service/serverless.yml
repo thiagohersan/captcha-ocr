@@ -19,6 +19,7 @@ provider:
 
 functions:
   image:
+    memorySize: 1280
     handler: service/functions/captcha.image
     events:
       - http:
