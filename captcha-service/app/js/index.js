@@ -13,6 +13,9 @@ function preload() {
   EL.languages = document.getElementsByClassName('input-radio');
   EL.text.addEventListener('keyup', createCaptcha);
   EL.button1984.addEventListener('click', create1984Captcha);
+  Array.from(EL.languages).forEach(e => {
+    e.addEventListener('click', create1984Captcha);
+  });
 }
 
 function setup() {
