@@ -10,6 +10,7 @@ function preload() {
   EL.menu = document.getElementById('my-menu-container');
   EL.text = document.getElementById('my-input-text');
   EL.button1984 = document.getElementById('my-button-1984');
+  EL.languages = document.getElementsByClassName('input-radio');
   EL.text.addEventListener('keyup', createCaptcha);
   EL.button1984.addEventListener('click', create1984Captcha);
 }
@@ -26,6 +27,13 @@ function setup() {
   pageReady = document.createElement('div');
   pageReady.setAttribute('id', 'page-ready');
   document.body.appendChild(pageReady);
+
+  const queryLang = (new URL(location.href)).searchParams.get('lang');
+  const queryButton = Array.from(EL.languages).find(el => (el.value === queryLang));
+  if (queryButton) {
+    queryButton.click();
+    EL.button1984.click();
+  }
 }
 
 function windowResized() {
@@ -75,7 +83,8 @@ function createCaptcha() {
 }
 
 function create1984Captcha() {
-  const m1984Phrases = seedPhrases.find(el => el.book === '1984').phrases.en;
+  const mLanguage = Array.from(EL.languages).find(el => el.checked).value;
+  const m1984Phrases = seedPhrases.find(el => el.book === '1984').phrases[mLanguage];
   EL.text.value = m1984Phrases[Math.floor(m1984Phrases.length * Math.random())];
   createCaptcha();
 }

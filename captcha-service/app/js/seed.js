@@ -19,17 +19,17 @@ const seedPhrases = [
         'WAR IS PEACE. FREEDOM IS SLAVERY. IGNORANCE IS STRENGTH.'
       ],
       pt: [
-        'Talvez não quisesse ser tão estimado quanto compreendido.',
+        'Talvez não quisesse ser tão estimado quanto compreendido.',
         'O bom senso era a heresia das heresias.',
-        'Nada pertencia ao indivíduo, com exceção de alguns centímetros cúbicos dentro do crânio.',
+        'Nada pertencia ao indivíduo, com exceção de alguns centímetros cúbicos dentro do crânio.',
         'Quem controla o passado, controla o futuro; quem controla o presente controla o passado',
-        'Ninguém jamais toma o poder com a intenção de largá-lo.',
-        'O poder está na capacidade de despedaçar os humanos e tornar a juntá-los da forma que se bem entender.',
-        'A história parou. Nada existe, exceto um presente sem-fim no qual o Partido tem sempre razão.',
-        'Serás oco. Havemos de te expremer, te deixar vazio, e então saberemos como te encher.',
-        'Para guardar um segredo é preciso escondê-lo também da própria consciência.',
-        'O propósito de fazer guerra é estar sempre em melhor posíção para fazer outra guerra.',
-        'GUERRA É PAZ. LIBERDADE É ESCRAVIDÃO. IGNORANCIA É FORÇA.'
+        'Ninguém jamais toma o poder com a intenção de largá-lo.',
+        'O poder está na capacidade de despedaçar os humanos e tornar a juntá-los da forma que se bem entender.',
+        'A história parou. Nada existe, exceto um presente sem fim no qual o Partido tem sempre razão.',
+        'Serás oco. Havemos de te expremer, te deixar vazio, e então saberemos como te encher.',
+        'Para guardar um segredo é preciso escondê-lo também da própria consciência.',
+        'O propósito de fazer guerra é estar sempre em melhor posição para fazer outra guerra.',
+        'GUERRA É PAZ. LIBERDADE É ESCRAVIDÃO. IGNORANCIA É FORÇA.'
       ]
     }
   },

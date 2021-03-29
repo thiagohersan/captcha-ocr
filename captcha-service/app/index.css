@@ -19,6 +19,18 @@ input {
   box-sizing: border-box;
 }
 
+.input-language {
+  display: flex;
+  flex-direction: column;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+.language-option {
+  display: flex;
+  flex-direction: row;
+}
+
 .input-text {
   width: 80%;
   box-sizing: border-box;
