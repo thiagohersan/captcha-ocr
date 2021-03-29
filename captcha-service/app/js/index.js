@@ -24,9 +24,6 @@ function setup() {
   smooth();
   noLoop();
   textSize(FONT_SIZE);
-  pageReady = document.createElement('div');
-  pageReady.setAttribute('id', 'page-ready');
-  document.body.appendChild(pageReady);
 
   const queryLang = (new URL(location.href)).searchParams.get('lang');
   const queryButton = Array.from(EL.languages).find(el => (el.value === queryLang));

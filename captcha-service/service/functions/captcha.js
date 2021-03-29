@@ -42,16 +42,14 @@ module.exports.image = async (event, context) => {
   const page = await browser.newPage();
   await page.setViewport({ width: 720, height: 720 });
 
-  await page.goto(process.env.CAPTCHA_URL);
-  await page.waitForSelector(SELECTORS.PAGE);
-  await page.click(SELECTORS.BUTTON);
+  await page.goto(`${process.env.CAPTCHA_URL}?lang=en`);
   await page.waitForSelector(SELECTORS.CAPTCHA_READY);
 
   const phraseElement = await page.$(SELECTORS.PHRASE);
   const phrase = await page.evaluate(el => el.value, phraseElement);
 
   const canvasElement = await page.$(SELECTORS.CAPTCHA_CANVAS);
-  const dataUrl = await page.evaluate(el => el.toDataURL(), canvasElement);
+  const dataUrl = await page.evaluate(el => el.toDataURL('image/png'), canvasElement);
 
   browser.close();
 
