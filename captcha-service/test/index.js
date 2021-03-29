@@ -22,7 +22,7 @@ getCaptcha();
 mHttpGet.onreadystatechange = (err) => {
   if (mHttpGet.readyState == 4 && mHttpGet.status == 200) {
     const res = JSON.parse(mHttpGet.responseText);
-    if(res.success && res.image.startsWith('data:image/png;base64,')) {
+    if(res.success && res.image.startsWith('data:image/jpeg;base64,')) {
       if(!thisCaptcha.ready) {
         thisCaptcha.ready = true;
         thisCaptcha.token = res.token;

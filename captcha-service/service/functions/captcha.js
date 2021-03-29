@@ -49,11 +49,11 @@ module.exports.image = async (event, context) => {
   const phrase = await page.evaluate(el => el.value, phraseElement);
 
   const canvasElement = await page.$(SELECTORS.CAPTCHA_CANVAS);
-  const dataUrl = await page.evaluate(el => el.toDataURL('image/png'), canvasElement);
+  const dataUrl = await page.evaluate(el => el.toDataURL('image/jpeg'), canvasElement);
 
   browser.close();
 
-  const success = (phrase.length > 0) && (dataUrl.startsWith('data:image/png;base64,'));
+  const success = (phrase.length > 0) && (dataUrl.startsWith('data:image/jpeg;base64,'));
   const token = encrypt(phrase, process.env.THE_ANSWER).toString();
 
   return {

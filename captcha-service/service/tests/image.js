@@ -26,7 +26,7 @@ describe('image', () => {
   });
 
   it('got image', async () => {
-    expect(body.image.startsWith('data:image/png;base64,')).to.be.true;
+    expect(body.image.startsWith('data:image/jpeg;base64,')).to.be.true;
   });
 
   it('got token', async () => {
