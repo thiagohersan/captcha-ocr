@@ -31,6 +31,9 @@ module.exports.compare = async (event, context) => {
 
 module.exports.image = async (event, context) => {
   const SELECTORS = JSON.parse(process.env.CAPTCHA_SELECTORS);
+
+  const mLang = event.queryStringParameters ? (event.queryStringParameters.lang || 'en') : 'en';
+
   const browser = await chrome.puppeteer.launch({
     args: chrome.args,
     defaultViewport: chrome.defaultViewport,
@@ -42,7 +45,7 @@ module.exports.image = async (event, context) => {
   const page = await browser.newPage();
   await page.setViewport({ width: 720, height: 720 });
 
-  await page.goto(`${process.env.CAPTCHA_URL}?lang=en`);
+  await page.goto(`${process.env.CAPTCHA_URL}?lang=${mLang}`);
   await page.waitForSelector(SELECTORS.CAPTCHA_READY);
 
   const phraseElement = await page.$(SELECTORS.PHRASE);
