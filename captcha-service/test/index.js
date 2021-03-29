@@ -1,4 +1,7 @@
-const API_URL = 'https://tbglhpigzk.execute-api.us-east-1.amazonaws.com/dev/captcha';
+const API = {
+  URL: 'https://tbglhpigzk.execute-api.us-east-1.amazonaws.com/dev/captcha',
+  lang: 'en'
+};
 
 const mHttpPost = new XMLHttpRequest();
 const mHttpGet = new XMLHttpRequest();
@@ -17,6 +20,7 @@ const thisCaptcha = {
   image: ''
 };
 
+API.lang = (new URL(location.href)).searchParams.get('lang') || 'en';
 getCaptcha();
 
 mHttpGet.onreadystatechange = (err) => {
@@ -143,13 +147,13 @@ function hideCaptcha() {
 }
 
 function getCaptcha() {
-  mHttpGet.open('GET', API_URL);
+  mHttpGet.open('GET', `${API.URL}?lang=${API.lang}`);
   mHttpGet.send();
 }
 
 function checkCaptcha() {
   EL.captchaButton.classList.remove('show');
-  mHttpPost.open('POST', API_URL);
+  mHttpPost.open('POST', API.URL);
   mHttpPost.send(JSON.stringify({
     token: thisCaptcha.token,
     phrase: EL.captchaInput.value
@@ -160,6 +164,8 @@ function setImage(img64) {
   EL.loader.classList.remove('show');
   EL.captchaImage.style.backgroundImage = `url("${img64}")`;
   EL.captchaButton.classList.add('show');
+  EL.captchaInput.focus();
+  EL.captchaInput.setSelectionRange(0, 0);
 }
 
 function unsetImage() {
