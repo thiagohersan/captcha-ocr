@@ -16,11 +16,14 @@ class Word {
     this.keyTransform(chars);
     this.waveShear(chars);
     this.noiseShear(chars);
+    this.raiseChar(chars);
+    this.lowerChar(chars);
     this.getLimits(chars);
 
     this.graphic.background(255, 0);
     this.graphic.fill(0);
     this.drawChars(chars);
+    this.drawLines();
 
     this.image = this.graphic.get();
     this.graphic.remove();
@@ -41,6 +44,31 @@ class Word {
       }
       this.graphic.endShape();
     }
+  }
+
+  drawLines() {
+    const padding = Word.FONT_SIZE / 6;
+    this.graphic.strokeWeight(padding / 1.5);
+    this.graphic.noFill();
+
+    [[255, 10, 100],
+     [100, 10, 255],
+     [0, 135, 210]].forEach(v => {
+      this.graphic.stroke(...v);
+      this.graphic.stroke(255);
+      this.graphic.line(random(padding, this.graphic.width - padding),
+                        random(padding, this.graphic.height - padding),
+                        random(padding, this.graphic.width - padding),
+                        random(padding, this.graphic.height - padding));
+      this.graphic.bezier(random(padding, this.graphic.width - padding),
+                          random(padding, this.graphic.height - padding),
+                          random(padding, this.graphic.width - padding),
+                          random(padding, this.graphic.height - padding),
+                          random(padding, this.graphic.width - padding),
+                          random(padding, this.graphic.height - padding),
+                          random(padding, this.graphic.width - padding),
+                          random(padding, this.graphic.height - padding));
+    });
   }
 
   getCharPoints(word) {
@@ -141,6 +169,22 @@ class Word {
         chars[c][i].x += maxChange * (0.5 - noise(p.x / noiseScale, p.y / noiseScale, z / noiseScale));
         chars[c][i].y += maxChange * (0.5 - noise(p.y / noiseScale, p.x / noiseScale));
       }
+    }
+  }
+
+  raiseChar(chars) {
+    const c = Math.floor(chars.length * Math.random());
+    for (let i = 0; i < chars[c].length; i++) {
+      const p = chars[c][i];
+      chars[c][i].y -= 0.3333 * Word.FONT_SIZE;
+    }
+  }
+
+  lowerChar(chars) {
+    const c = Math.floor(chars.length * Math.random());
+    for (let i = 0; i < chars[c].length; i++) {
+      const p = chars[c][i];
+      chars[c][i].y += 0.3333 * Word.FONT_SIZE;
     }
   }
 }
