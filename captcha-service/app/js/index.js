@@ -27,10 +27,8 @@ function setup() {
 
   const queryLang = (new URL(location.href)).searchParams.get('lang');
   const queryButton = Array.from(EL.languages).find(el => (el.value === queryLang));
-  if (queryButton) {
-    queryButton.click();
-    EL.button1984.click();
-  }
+  if (queryButton) queryButton.click();
+  EL.button1984.click();
 }
 
 function windowResized() {
