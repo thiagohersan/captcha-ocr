@@ -29,7 +29,7 @@ const seedPhrases = [
         'Serás oco. Havemos de te expremer, te deixar vazio, e então saberemos como te encher.',
         'Para guardar um segredo é preciso escondê-lo também da própria consciência.',
         'O propósito de fazer guerra é estar sempre em melhor posição para fazer outra guerra.',
-        'GUERRA É PAZ. LIBERDADE É ESCRAVIDÃO. IGNORANCIA É FORÇA.'
+        'GUERRA É PAZ. LIBERDADE É ESCRAVIDÃO. IGNORÂNCIA É FORÇA.'
       ]
     }
   },
