@@ -48,8 +48,15 @@ mHttpPost.onreadystatechange = (err) => {
     EL.captchaInput.value = '';
 
     if(res.success && res.url.length > 0) {
-      window.location.href = res.url;
+      //window.location.href = res.url;
+      EL.captchaMessage.classList.remove('error');
+      EL.captchaMessage.classList.add('ok');
+      EL.captchaMessage.innerHTML = 'OK !';
+      setTimeout(() => window.location.href = window.location.href, 1000);
     } else {
+      EL.captchaMessage.classList.remove('ok');
+      EL.captchaMessage.classList.add('error');
+      EL.captchaMessage.innerHTML = 'Try again';
       if(!nextCaptcha.ready) {
         thisCaptcha.ready = false;
         unsetImage();
@@ -88,8 +95,13 @@ window.addEventListener('load', () => {
 
   EL.captchaInput = document.createElement('textarea');
   EL.captchaInput.setAttribute('rows', '3');
+  EL.captchaInput.setAttribute('placeholder', 'enter phrase here');
   EL.captchaInput.classList.add('captcha-input');
   EL.captchaContainer.appendChild(EL.captchaInput);
+
+  EL.captchaMessage = document.createElement('div');
+  EL.captchaMessage.classList.add('captcha-message');
+  EL.captchaContainer.appendChild(EL.captchaMessage);
 
   EL.captchaButton = document.createElement('input');
   EL.captchaButton.setAttribute('type', 'button');
@@ -153,6 +165,8 @@ function getCaptcha() {
 
 function checkCaptcha() {
   EL.captchaButton.classList.remove('show');
+  EL.captchaMessage.classList.remove('error', 'ok');
+  EL.captchaMessage.innerHTML = '';
   mHttpPost.open('POST', API.URL);
   mHttpPost.send(JSON.stringify({
     token: thisCaptcha.token,
