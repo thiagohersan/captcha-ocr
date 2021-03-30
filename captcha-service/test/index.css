@@ -28,7 +28,7 @@
   max-width: 400px;
   height: 70vh;
   padding: 20px;
-  padding-bottom: 16%;
+  padding-bottom: 110px;
   background-color: #fff;
   position: absolute;
   display: flex;
@@ -63,17 +63,17 @@
 .captcha-message {
   font-size: 14px;
   font-family: sans-serif;
-  color: #000;
+  color: #fff;
   opacity: 0;
   transition: opacity .1s linear;
 }
 .captcha-message.ok {
-  opacity: 1;
   color: #0a0;
+  opacity: 1;
 }
 .captcha-message.error {
-  opacity: 1;
   color: #e00;
+  opacity: 1;
 }
 
 .captcha-button {

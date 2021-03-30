@@ -101,6 +101,7 @@ window.addEventListener('load', () => {
 
   EL.captchaMessage = document.createElement('div');
   EL.captchaMessage.classList.add('captcha-message');
+  EL.captchaMessage.innerHTML = '.';
   EL.captchaContainer.appendChild(EL.captchaMessage);
 
   EL.captchaButton = document.createElement('input');
@@ -166,7 +167,7 @@ function getCaptcha() {
 function checkCaptcha() {
   EL.captchaButton.classList.remove('show');
   EL.captchaMessage.classList.remove('error', 'ok');
-  EL.captchaMessage.innerHTML = '';
+  EL.captchaMessage.innerHTML = '.';
   mHttpPost.open('POST', API.URL);
   mHttpPost.send(JSON.stringify({
     token: thisCaptcha.token,
