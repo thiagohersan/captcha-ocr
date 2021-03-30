@@ -48,7 +48,7 @@ class Word {
 
   drawLines() {
     const padding = Word.FONT_SIZE / 6;
-    this.graphic.strokeWeight(padding / 2);
+    this.graphic.strokeWeight(Word.FONT_SIZE / 8);
     this.graphic.noFill();
 
     [[255, 10, 100],
@@ -56,10 +56,6 @@ class Word {
      [0, 135, 210]].forEach(v => {
       this.graphic.stroke(...v);
       this.graphic.stroke(255);
-      this.graphic.line(random(padding, this.graphic.width - padding),
-                        random(padding, this.graphic.height - padding),
-                        random(padding, this.graphic.width - padding),
-                        random(padding, this.graphic.height - padding));
       this.graphic.bezier(random(padding, this.graphic.width - padding),
                           random(padding, this.graphic.height - padding),
                           random(padding, this.graphic.width - padding),
