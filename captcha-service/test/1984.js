@@ -49,18 +49,18 @@ mHttpPost.onreadystatechange = (err) => {
 
     if(res.success && res.url.length > 0) {
       //window.location.href = res.url;
-      EL.captchaMessage.classList.remove('error');
-      EL.captchaMessage.classList.add('ok');
+      EL.captchaMessage.classList.remove('error-1984');
+      EL.captchaMessage.classList.add('ok-1984');
       EL.captchaMessage.innerHTML = 'OK !';
       setTimeout(() => window.location.href = window.location.href, 1000);
     } else {
-      EL.captchaMessage.classList.remove('ok');
-      EL.captchaMessage.classList.add('error');
+      EL.captchaMessage.classList.remove('ok-1984');
+      EL.captchaMessage.classList.add('error-1984');
       EL.captchaMessage.innerHTML = 'Try again';
       if(!nextCaptcha.ready) {
         thisCaptcha.ready = false;
         unsetImage();
-        EL.captchaButton.classList.remove('show');
+        EL.captchaButton.classList.remove('show-1984');
       } else {
         thisCaptcha.ready = nextCaptcha.ready;
         thisCaptcha.token = nextCaptcha.token;
@@ -74,40 +74,40 @@ mHttpPost.onreadystatechange = (err) => {
 };
 
 window.addEventListener('load', () => {
-  EL.link = document.getElementById('my-link');
+  EL.link = document.getElementById('my-link-1984');
 
   EL.overlay = document.createElement('div');
-  EL.overlay.classList.add('overlay');
+  EL.overlay.classList.add('overlay-1984');
   document.body.appendChild(EL.overlay);
 
   EL.captchaContainer = document.createElement('div');
-  EL.captchaContainer.classList.add('captcha-container');
+  EL.captchaContainer.classList.add('captcha-container-1984');
   EL.overlay.appendChild(EL.captchaContainer);
 
   EL.captchaImage = document.createElement('div');
-  EL.captchaImage.classList.add('captcha-image');
+  EL.captchaImage.classList.add('captcha-image-1984');
   EL.captchaContainer.appendChild(EL.captchaImage);
   EL.captchaImage.style.height = window.getComputedStyle(EL.captchaImage).getPropertyValue('width');
 
   EL.loader = document.createElement('div');
-  EL.loader.classList.add('loader', 'show');
+  EL.loader.classList.add('loader-1984', 'show-1984');
   EL.captchaImage.appendChild(EL.loader);
 
   EL.captchaInput = document.createElement('textarea');
   EL.captchaInput.setAttribute('rows', '3');
   EL.captchaInput.setAttribute('placeholder', 'enter phrase here');
-  EL.captchaInput.classList.add('captcha-input');
+  EL.captchaInput.classList.add('captcha-input-1984');
   EL.captchaContainer.appendChild(EL.captchaInput);
 
   EL.captchaMessage = document.createElement('div');
-  EL.captchaMessage.classList.add('captcha-message');
+  EL.captchaMessage.classList.add('captcha-message-1984');
   EL.captchaMessage.innerHTML = '.';
   EL.captchaContainer.appendChild(EL.captchaMessage);
 
   EL.captchaButton = document.createElement('input');
   EL.captchaButton.setAttribute('type', 'button');
   EL.captchaButton.setAttribute('value', 'SEND');
-  EL.captchaButton.classList.add('captcha-button');
+  EL.captchaButton.classList.add('captcha-button-1984');
   EL.captchaContainer.appendChild(EL.captchaButton);
 
   EL.link.addEventListener('click', (event) => {
@@ -127,13 +127,13 @@ window.addEventListener('load', () => {
   });
 
   document.body.addEventListener('keydown', (event) => {
-    if (!EL.overlay.classList.contains('show')) return;
+    if (!EL.overlay.classList.contains('show-1984')) return;
 
     if (event.key === 'Escape') {
       hideCaptcha();
     } else if (event.key === 'Enter') {
       event.preventDefault();
-      if(thisCaptcha.ready && EL.captchaButton.classList.contains('show')) checkCaptcha();
+      if(thisCaptcha.ready && EL.captchaButton.classList.contains('show-1984')) checkCaptcha();
     }
   });
 });
@@ -150,13 +150,13 @@ function showCaptcha(event) {
   const centerTop = (event.clientY - EL.captchaContainer.offsetHeight / 2);
   EL.captchaContainer.style.left =  constrain(centerLeft, padding, maxLeft - padding) + 'px';
   EL.captchaContainer.style.top =  constrain(centerTop, padding, maxTop - padding) + 'px';
-  EL.overlay.classList.add('show');
+  EL.overlay.classList.add('show-1984');
   EL.captchaInput.focus();
   EL.captchaInput.setSelectionRange(0, 0);
 }
 
 function hideCaptcha() {
-  EL.overlay.classList.remove('show');
+  EL.overlay.classList.remove('show-1984');
 }
 
 function getCaptcha() {
@@ -165,8 +165,8 @@ function getCaptcha() {
 }
 
 function checkCaptcha() {
-  EL.captchaButton.classList.remove('show');
-  EL.captchaMessage.classList.remove('error', 'ok');
+  EL.captchaButton.classList.remove('show-1984');
+  EL.captchaMessage.classList.remove('error-1984', 'ok-1984');
   EL.captchaMessage.innerHTML = '.';
   mHttpPost.open('POST', API.URL);
   mHttpPost.send(JSON.stringify({
@@ -176,15 +176,15 @@ function checkCaptcha() {
 }
 
 function setImage(img64) {
-  EL.loader.classList.remove('show');
+  EL.loader.classList.remove('show-1984');
   EL.captchaImage.style.backgroundImage = `url("${img64}")`;
-  EL.captchaButton.classList.add('show');
+  EL.captchaButton.classList.add('show-1984');
   EL.captchaInput.focus();
   EL.captchaInput.setSelectionRange(0, 0);
 }
 
 function unsetImage() {
   EL.captchaImage.style.backgroundImage = '';
-  EL.loader.classList.add('show');
-  EL.captchaButton.classList.remove('show');
+  EL.loader.classList.add('show-1984');
+  EL.captchaButton.classList.remove('show-1984');
 }

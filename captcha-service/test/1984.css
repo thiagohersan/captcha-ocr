@@ -1,4 +1,4 @@
-.link {
+.link-1984 {
   cursor: pointer;
   text-decoration: underline;
   position: absolute;
@@ -6,7 +6,7 @@
   left: 50%;
 }
 
-.overlay {
+.overlay-1984 {
   width: 100vw;
   height: 100vh;
   position: absolute;
@@ -18,12 +18,12 @@
   opacity: 0;
   transition: opacity .12s linear;
 }
-.overlay.show {
+.overlay-1984.show-1984 {
   pointer-events: all;
   opacity: 1;
 }
 
-.captcha-container {
+.captcha-container-1984 {
   width: 40vw;
   max-width: 400px;
   height: 70vh;
@@ -38,7 +38,7 @@
   box-sizing: border-box;
 }
 
-.captcha-image {
+.captcha-image-1984 {
   width: 100%;
   padding: 0;
   margin: 0 auto;
@@ -52,7 +52,7 @@
   filter: blur(1px);
 }
 
-.captcha-input {
+.captcha-input-1984 {
   width: 100%;
   box-sizing: border-box;
   outline: none;
@@ -60,34 +60,34 @@
   overflow:hidden;
 }
 
-.captcha-message {
+.captcha-message-1984 {
   font-size: 14px;
   font-family: sans-serif;
   color: #fff;
   opacity: 0;
   transition: opacity .1s linear;
 }
-.captcha-message.ok {
+.captcha-message-1984.ok-1984 {
   color: #0a0;
   opacity: 1;
 }
-.captcha-message.error {
+.captcha-message-1984.error-1984 {
   color: #e00;
   opacity: 1;
 }
 
-.captcha-button {
+.captcha-button-1984 {
   width: 40%;
   cursor: pointer;
   pointer-events: none;
   opacity: 0.4;
 }
-.captcha-button.show {
+.captcha-button.show-1984 {
   pointer-events: all;
   opacity: 1;
 }
 
-.loader {
+.loader-1984 {
   position: absolute;
   font-size: 10px;
   margin: 0 auto;
@@ -104,12 +104,12 @@
   pointer-events: none;
   opacity: 0;
 }
-.loader.show {
+.loader-1984.show-1984 {
   pointer-events: all;
   opacity: 1;
 }
 
-.loader:before {
+.loader-1984:before {
   width: 50%;
   height: 50%;
   background: #222;
@@ -120,7 +120,7 @@
   content: '';
 }
 
-.loader:after {
+.loader-1984:after {
   background: #fff;
   width: 75%;
   height: 75%;
