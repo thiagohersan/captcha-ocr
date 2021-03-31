@@ -133,7 +133,7 @@ window.addEventListener('load', () => {
       hideCaptcha();
     } else if (event.key === 'Enter') {
       event.preventDefault();
-      if(thisCaptcha.ready && EL.captchaButton.classList.contains('show-1984')) checkCaptcha();
+      if (thisCaptcha.ready && EL.captchaButton.classList.contains('show-1984')) checkCaptcha();
     }
   });
 });

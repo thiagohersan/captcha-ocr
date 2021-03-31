@@ -33,7 +33,7 @@ after_script:
       git checkout --orphan gh-pages
       git rm --cached -rf .
 
-      mv captcha-service/test/index.* .
+      mv captcha-service/test/*.* .
       rm -rf 1984 captcha-service
 
       git add index.* 1984.*
