@@ -26,8 +26,8 @@ getCaptcha();
 mHttpGet.onreadystatechange = (err) => {
   if (mHttpGet.readyState == 4 && mHttpGet.status == 200) {
     const res = JSON.parse(mHttpGet.responseText);
-    if(res.success && res.image.startsWith('data:image/jpeg;base64,')) {
-      if(!thisCaptcha.ready) {
+    if (res.success && res.image.startsWith('data:image/jpeg;base64,')) {
+      if (!thisCaptcha.ready) {
         thisCaptcha.ready = true;
         thisCaptcha.token = res.token;
         thisCaptcha.image = res.image;
@@ -47,7 +47,7 @@ mHttpPost.onreadystatechange = (err) => {
     const res = JSON.parse(mHttpPost.responseText);
     EL.captchaInput.value = '';
 
-    if(res.success && res.url.length > 0) {
+    if (res.success && res.url.length > 0) {
       //window.location.href = res.url;
       EL.captchaMessage.classList.remove('error-1984');
       EL.captchaMessage.classList.add('ok-1984');
@@ -57,7 +57,7 @@ mHttpPost.onreadystatechange = (err) => {
       EL.captchaMessage.classList.remove('ok-1984');
       EL.captchaMessage.classList.add('error-1984');
       EL.captchaMessage.innerHTML = 'Try again';
-      if(!nextCaptcha.ready) {
+      if (!nextCaptcha.ready) {
         thisCaptcha.ready = false;
         unsetImage();
         EL.captchaButton.classList.remove('show-1984');
