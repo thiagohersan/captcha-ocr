@@ -20,6 +20,21 @@ const thisCaptcha = {
   image: ''
 };
 
+const TEXT = {
+  submit: {
+    en: 'ENTER',
+    pt: 'ENTRAR'
+  },
+  instruction: {
+    en: 'Type phrase here',
+    pt: 'Escreva a frase aqui'
+  },
+  error: {
+    en: 'Try again',
+    pt: 'Tente novamente'
+  }
+}
+
 API.lang = (new URL(location.href)).searchParams.get('lang') || 'en';
 getCaptcha();
 
@@ -54,7 +69,7 @@ mHttpPost.onreadystatechange = (err) => {
       setTimeout(() => window.location.href = window.location.href, 1000);
     } else {
       EL.captchaMessage.classList.add('error-1984');
-      EL.captchaMessage.innerHTML = 'Try again';
+      EL.captchaMessage.innerHTML = TEXT.error[API.lang];
       checkAndGetNextCaptcha();
     }
   }
@@ -82,7 +97,7 @@ window.addEventListener('load', () => {
 
   EL.captchaInput = document.createElement('textarea');
   EL.captchaInput.setAttribute('rows', '3');
-  EL.captchaInput.setAttribute('placeholder', 'enter phrase here');
+  EL.captchaInput.setAttribute('placeholder', TEXT.instruction[API.lang]);
   EL.captchaInput.classList.add('captcha-input-1984');
   EL.captchaContainer.appendChild(EL.captchaInput);
 
@@ -100,7 +115,7 @@ window.addEventListener('load', () => {
   EL.buttonContainer.appendChild(EL.refreshButton);
 
   EL.captchaButton = document.createElement('button');
-  EL.captchaButton.innerHTML = 'SEND';
+  EL.captchaButton.innerHTML = TEXT.submit[API.lang];
   EL.captchaButton.classList.add('captcha-button-1984');
   EL.buttonContainer.appendChild(EL.captchaButton);
 
