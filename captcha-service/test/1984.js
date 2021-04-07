@@ -54,21 +54,9 @@ mHttpPost.onreadystatechange = (err) => {
       EL.captchaMessage.innerHTML = 'OK !';
       setTimeout(() => window.location.href = window.location.href, 1000);
     } else {
-      EL.captchaMessage.classList.remove('ok-1984');
       EL.captchaMessage.classList.add('error-1984');
       EL.captchaMessage.innerHTML = 'Try again';
-      if (!nextCaptcha.ready) {
-        thisCaptcha.ready = false;
-        unsetImage();
-        EL.captchaButton.classList.remove('show-1984');
-      } else {
-        thisCaptcha.ready = nextCaptcha.ready;
-        thisCaptcha.token = nextCaptcha.token;
-        thisCaptcha.image = nextCaptcha.image;
-        nextCaptcha.ready = false;
-        setImage(thisCaptcha.image);
-      }
-      getCaptcha();
+      checkAndGetNextCaptcha();
     }
   }
 };
@@ -104,11 +92,24 @@ window.addEventListener('load', () => {
   EL.captchaMessage.innerHTML = '.';
   EL.captchaContainer.appendChild(EL.captchaMessage);
 
-  EL.captchaButton = document.createElement('input');
-  EL.captchaButton.setAttribute('type', 'button');
-  EL.captchaButton.setAttribute('value', 'SEND');
+  EL.buttonContainer = document.createElement('div');
+  EL.buttonContainer.classList.add('button-container-1984');
+  EL.captchaContainer.appendChild(EL.buttonContainer);
+
+  EL.refreshButton = document.createElement('button');
+  EL.refreshButton.classList.add('captcha-button-1984');
+  EL.buttonContainer.appendChild(EL.refreshButton);
+
+  EL.captchaButton = document.createElement('button');
+  EL.captchaButton.innerHTML = 'SEND';
   EL.captchaButton.classList.add('captcha-button-1984');
-  EL.captchaContainer.appendChild(EL.captchaButton);
+  EL.buttonContainer.appendChild(EL.captchaButton);
+
+  EL.refreshButtonImage = document.createElement('div');
+  EL.refreshButtonImage.classList.add('button-image-1984');
+  EL.refreshButtonImage.style.height = EL.captchaButton.offsetHeight + 'px';
+  EL.refreshButtonImage.style.width = EL.captchaButton.offsetHeight + 'px';
+  EL.refreshButton.appendChild(EL.refreshButtonImage);
 
   EL.link.addEventListener('click', (event) => {
     showCaptcha(event);
@@ -116,6 +117,10 @@ window.addEventListener('load', () => {
 
   EL.captchaButton.addEventListener('click', (event) => {
     if(thisCaptcha.ready) checkCaptcha();
+  });
+
+  EL.refreshButton.addEventListener('click', (event) => {
+    checkAndGetNextCaptcha();
   });
 
   EL.overlay.addEventListener('click', (event) => {
@@ -164,8 +169,34 @@ function getCaptcha() {
   mHttpGet.send();
 }
 
-function checkCaptcha() {
+function checkAndGetNextCaptcha() {
+  EL.captchaMessage.classList.remove('ok-1984');
+  if (!nextCaptcha.ready) {
+    thisCaptcha.ready = false;
+    unsetImage();
+    hideButtons();
+  } else {
+    thisCaptcha.ready = nextCaptcha.ready;
+    thisCaptcha.token = nextCaptcha.token;
+    thisCaptcha.image = nextCaptcha.image;
+    nextCaptcha.ready = false;
+    setImage(thisCaptcha.image);
+  }
+  getCaptcha();
+}
+
+function showButtons() {
+  EL.captchaButton.classList.add('show-1984');
+  EL.refreshButton.classList.add('show-1984');
+}
+
+function hideButtons() {
   EL.captchaButton.classList.remove('show-1984');
+  EL.refreshButton.classList.remove('show-1984');
+}
+
+function checkCaptcha() {
+  hideButtons();
   EL.captchaMessage.classList.remove('error-1984', 'ok-1984');
   EL.captchaMessage.innerHTML = '.';
   mHttpPost.open('POST', API.URL);
@@ -178,7 +209,7 @@ function checkCaptcha() {
 function setImage(img64) {
   EL.loader.classList.remove('show-1984');
   EL.captchaImage.style.backgroundImage = `url("${img64}")`;
-  EL.captchaButton.classList.add('show-1984');
+  showButtons();
   EL.captchaInput.focus();
   EL.captchaInput.setSelectionRange(0, 0);
 }
@@ -186,5 +217,5 @@ function setImage(img64) {
 function unsetImage() {
   EL.captchaImage.style.backgroundImage = '';
   EL.loader.classList.add('show-1984');
-  EL.captchaButton.classList.remove('show-1984');
+  hideButtons();
 }
