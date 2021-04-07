@@ -116,7 +116,7 @@ window.addEventListener('load', () => {
   });
 
   EL.captchaButton.addEventListener('click', (event) => {
-    if(thisCaptcha.ready) checkCaptcha();
+    if (thisCaptcha.ready) checkCaptcha();
   });
 
   EL.refreshButton.addEventListener('click', (event) => {
