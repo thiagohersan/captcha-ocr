@@ -19,7 +19,7 @@ const seedPhrases = [
         'WAR IS PEACE. FREEDOM IS SLAVERY. IGNORANCE IS STRENGTH.'
       ],
       pt: [
-        'Talvez não quisesse ser tão estimado quanto compreendido.',
+        'Talvez não quisesse ser estimado, mas compreendido.',
         'O bom senso era a heresia das heresias.',
         'Nada pertencia ao indivíduo, com exceção de alguns centímetros cúbicos dentro do crânio.',
         'Quem controla o passado, controla o futuro; quem controla o presente controla o passado',
@@ -29,7 +29,7 @@ const seedPhrases = [
         'Serás oco. Havemos de te expremer, te deixar vazio, e então saberemos como te encher.',
         'Para guardar um segredo é preciso escondê-lo também da própria consciência.',
         'O propósito de fazer guerra é estar sempre em melhor posição para fazer outra guerra.',
-        'GUERRA É PAZ. LIBERDADE É ESCRAVIDÃO. IGNORÂNCIA É FORÇA.'
+        'GUERRA É PAZ. LIBERDADE É RESIGNAÇÃO. IGNORÂNCIA É FORÇA.'
       ]
     }
   },
