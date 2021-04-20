@@ -26,9 +26,7 @@
 .captcha-container-1984 {
   width: 40vw;
   max-width: 400px;
-  height: 70vh;
-  padding: 20px;
-  padding-bottom: 110px;
+  padding: 30px;
   background-color: #fff;
   position: absolute;
   display: flex;
@@ -73,7 +71,7 @@
   opacity: 1;
 }
 .captcha-message-1984.error-1984 {
-  color: #e00;
+  color: #7878FF;
   opacity: 1;
 }
 
@@ -111,8 +109,8 @@
   width: 4vw;
   height: 4vw;
   border-radius: 50%;
-  background: #222;
-  background: linear-gradient(to right, rgba(34, 34, 34, 1) 10%, rgba(34, 34, 34, 0) 42%);
+  background: #7878FF;
+  background: linear-gradient(to right, rgba(120, 120, 255, 1) 10%, rgba(120, 120, 255, 0) 42%);
   position: relative;
   animation: load-spin 1.4s infinite linear;
   transform: translateZ(0);
@@ -128,7 +126,7 @@
 .loader-1984:before {
   width: 50%;
   height: 50%;
-  background: #222;
+  background: #7878FF;
   border-radius: 100% 0 0 0;
   position: absolute;
   top: 0;

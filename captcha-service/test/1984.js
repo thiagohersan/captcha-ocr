@@ -1,3 +1,5 @@
+// TODO: tirar try again quando clicar o refresh
+
 const API = {
   URL: 'https://tbglhpigzk.execute-api.us-east-1.amazonaws.com/dev/captcha',
   lang: 'en'
@@ -134,6 +136,7 @@ window.addEventListener('load', () => {
   });
 
   EL.refreshButton.addEventListener('click', (event) => {
+    clearMessage();
     checkAndGetNextCaptcha();
   });
 
@@ -208,6 +211,10 @@ function showButtons() {
 function hideButtons() {
   EL.captchaButton.classList.remove('show-1984');
   EL.refreshButton.classList.remove('show-1984');
+}
+
+function clearMessage() {
+  EL.captchaMessage.classList.remove('error-1984', 'ok-1984');
 }
 
 function checkCaptcha() {
