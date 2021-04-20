@@ -63,7 +63,7 @@ mHttpPost.onreadystatechange = (err) => {
   if (mHttpPost.readyState == 4 && mHttpPost.status == 200) {
     const res = JSON.parse(mHttpPost.responseText);
     if (res.success && res.url.length > 0) {
-      //window.location.href = res.url;
+      window.location.href = res.url;
       EL.captchaMessage.classList.remove('error-1984');
       EL.captchaMessage.classList.add('ok-1984');
       EL.captchaMessage.innerHTML = 'OK !';
