@@ -35,7 +35,7 @@ const TEXT = {
   }
 }
 
-API.lang = (new URL(location.href)).searchParams.get('lang') || 'pt';
+setLanguage();
 getCaptcha();
 
 mHttpGet.onreadystatechange = (err) => {
@@ -61,10 +61,9 @@ mHttpPost.onreadystatechange = (err) => {
   if (mHttpPost.readyState == 4 && mHttpPost.status == 200) {
     const res = JSON.parse(mHttpPost.responseText);
     if (res.success && res.url.length > 0) {
-      window.location.href = res.url;
       EL.captchaMessage.classList.remove('error-1984');
       EL.captchaInput.value = '';
-      setTimeout(() => window.location.href = window.location.href, 1000);
+      window.location.href = res.url;
     } else {
       EL.captchaMessage.classList.add('error-1984');
       EL.captchaMessage.innerHTML = TEXT.error[API.lang];
@@ -75,10 +74,6 @@ mHttpPost.onreadystatechange = (err) => {
 
 window.addEventListener('load', () => {
   EL.link = document.getElementById('my-link-1984');
-
-  if(EL.link.getAttribute('data-lang') === 'en' || EL.link.getAttribute('data-lang') === 'pt') {
-    API.lang = EL.link.getAttribute('data-lang');
-  }
 
   EL.overlay = document.createElement('div');
   EL.overlay.classList.add('overlay-1984');
@@ -128,6 +123,7 @@ window.addEventListener('load', () => {
   EL.refreshButton.appendChild(EL.refreshButtonImage);
 
   EL.link.addEventListener('click', (event) => {
+    event.preventDefault();
     showCaptcha(event);
   });
 
@@ -159,6 +155,10 @@ window.addEventListener('load', () => {
     }
   });
 });
+
+function setLanguage() {
+  API.lang = document.documentElement.getAttribute('lang') || 'en';
+}
 
 function constrain(v, min, max) {
   return Math.max(min, Math.min(max, v));
