@@ -45,6 +45,7 @@ input {
 .canvas-container {
   display: flex;
   flex-grow: 1;
+  transform: scale(.5);
 }
 
 .captcha-canvas {

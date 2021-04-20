@@ -23,7 +23,7 @@ class Word {
     this.graphic.background(255, 0);
     this.graphic.fill(0);
     this.drawChars(chars);
-    this.drawLines();
+    //this.drawLines();
 
     this.image = this.graphic.get();
     this.graphic.remove();
@@ -48,14 +48,16 @@ class Word {
 
   drawLines() {
     const padding = Word.FONT_SIZE / 6;
-    this.graphic.strokeWeight(Word.FONT_SIZE / 8);
+    this.graphic.strokeWeight(Word.FONT_SIZE / 10);
     this.graphic.noFill();
 
     [[255, 10, 100],
      [100, 10, 255],
      [0, 135, 210]].forEach(v => {
       this.graphic.stroke(...v);
-      this.graphic.stroke(255);
+      //this.graphic.stroke(255);
+      this.graphic.stroke(120, 120, 255);
+      //this.graphic.stroke(198, 255, 59);
       this.graphic.bezier(random(padding, this.graphic.width - padding),
                           random(padding, this.graphic.height - padding),
                           random(padding, this.graphic.width - padding),
