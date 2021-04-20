@@ -1,5 +1,3 @@
-// TODO: tirar try again quando clicar o refresh
-
 const API = {
   URL: 'https://tbglhpigzk.execute-api.us-east-1.amazonaws.com/dev/captcha',
   lang: 'en'
