@@ -66,10 +66,6 @@
   opacity: 0;
   transition: opacity .1s linear;
 }
-.captcha-message-1984.ok-1984 {
-  color: #0a0;
-  opacity: 1;
-}
 .captcha-message-1984.error-1984 {
   color: #7878FF;
   opacity: 1;

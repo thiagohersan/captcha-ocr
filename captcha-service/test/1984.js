@@ -65,8 +65,6 @@ mHttpPost.onreadystatechange = (err) => {
     if (res.success && res.url.length > 0) {
       window.location.href = res.url;
       EL.captchaMessage.classList.remove('error-1984');
-      EL.captchaMessage.classList.add('ok-1984');
-      EL.captchaMessage.innerHTML = 'OK !';
       EL.captchaInput.value = '';
       setTimeout(() => window.location.href = window.location.href, 1000);
     } else {
@@ -187,7 +185,6 @@ function getCaptcha() {
 }
 
 function checkAndGetNextCaptcha() {
-  EL.captchaMessage.classList.remove('ok-1984');
   EL.captchaInput.value = '';
   if (!nextCaptcha.ready) {
     thisCaptcha.ready = false;
@@ -214,12 +211,12 @@ function hideButtons() {
 }
 
 function clearMessage() {
-  EL.captchaMessage.classList.remove('error-1984', 'ok-1984');
+  EL.captchaMessage.classList.remove('error-1984');
 }
 
 function checkCaptcha() {
   hideButtons();
-  EL.captchaMessage.classList.remove('error-1984', 'ok-1984');
+  clearMessage();
   EL.captchaMessage.innerHTML = '.';
   mHttpPost.open('POST', API.URL);
   mHttpPost.send(JSON.stringify({
