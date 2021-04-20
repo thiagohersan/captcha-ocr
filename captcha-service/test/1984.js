@@ -35,7 +35,7 @@ const TEXT = {
   }
 }
 
-API.lang = (new URL(location.href)).searchParams.get('lang') || 'en';
+API.lang = (new URL(location.href)).searchParams.get('lang') || 'pt';
 getCaptcha();
 
 mHttpGet.onreadystatechange = (err) => {
@@ -75,6 +75,10 @@ mHttpPost.onreadystatechange = (err) => {
 
 window.addEventListener('load', () => {
   EL.link = document.getElementById('my-link-1984');
+
+  if(EL.link.getAttribute('data-lang') === 'en' || EL.link.getAttribute('data-lang') === 'pt') {
+    API.lang = EL.link.getAttribute('data-lang');
+  }
 
   EL.overlay = document.createElement('div');
   EL.overlay.classList.add('overlay-1984');
