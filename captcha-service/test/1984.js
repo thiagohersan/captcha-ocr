@@ -73,7 +73,8 @@ mHttpPost.onreadystatechange = (err) => {
 };
 
 window.addEventListener('load', () => {
-  EL.link = document.getElementById('my-link-1984');
+  const allAs = Array.from(document.getElementsByTagName('a'));
+  EL.link = allAs.filter(el => isConfirmHumanityLink(el.getAttribute('href')))[0];
 
   EL.overlay = document.createElement('div');
   EL.overlay.classList.add('overlay-1984');
@@ -155,6 +156,10 @@ window.addEventListener('load', () => {
     }
   });
 });
+
+function isConfirmHumanityLink(link) {
+  return link.includes('curadoria/info/5');
+}
 
 function setLanguage() {
   API.lang = document.documentElement.getAttribute('lang') || 'en';
