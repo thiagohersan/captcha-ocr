@@ -35,9 +35,6 @@ const TEXT = {
   }
 }
 
-setLanguage();
-getCaptcha();
-
 mHttpGet.onreadystatechange = (err) => {
   if (mHttpGet.readyState == 4 && mHttpGet.status == 200) {
     const res = JSON.parse(mHttpGet.responseText);
@@ -73,6 +70,9 @@ mHttpPost.onreadystatechange = (err) => {
 };
 
 window.addEventListener('load', () => {
+  setLanguage();
+  getCaptcha();
+
   const allAs = Array.from(document.getElementsByTagName('a'));
   EL.link = allAs.filter(el => isConfirmHumanityLink(el.getAttribute('href')))[0];
 
