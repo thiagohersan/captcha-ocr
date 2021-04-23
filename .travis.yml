@@ -36,7 +36,7 @@ after_script:
       mv captcha-service/test/*.* .
       rm -rf 1984 captcha-service
 
-      git add index.* 1984.* refresh.svg
+      git add index.* 1984.* 1984.*.svg
       git commit -m "update site"
       git remote add origin-pages https://thiagohersan:$GHTOKEN@github.com/thiagohersan/captcha-ocr.git
       git push origin-pages :gh-pages
