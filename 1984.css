@@ -1,0 +1,142 @@
+.overlay-1984 {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .12s linear;
+}
+.overlay-1984.show-1984 {
+  pointer-events: all;
+  opacity: 1;
+}
+
+.captcha-container-1984 {
+  width: 40vw;
+  max-width: 400px;
+  padding: 30px;
+  background-color: #fff;
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: flex-end;
+  box-sizing: border-box;
+}
+
+.captcha-image-1984 {
+  width: 100%;
+  padding: 0;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  box-sizing: border-box;
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: blur(.5px);
+}
+
+.captcha-input-1984 {
+  width: 100%;
+  box-sizing: border-box;
+  outline: none;
+  resize: none;
+  overflow:hidden;
+}
+
+.captcha-message-1984 {
+  margin: 8px 0;
+  font-size: 14px;
+  font-family: sans-serif;
+  color: #fff;
+  opacity: 0;
+  transition: opacity .1s linear;
+}
+.captcha-message-1984.error-1984 {
+  color: #7878FF;
+  opacity: 1;
+}
+
+.button-container-1984 {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.button-image-1984 {
+  background-image: url('./1984.refresh.svg');
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+  margin: 0 auto;
+}
+
+.captcha-button-1984 {
+  width: 40%;
+  cursor: pointer;
+  pointer-events: none;
+  opacity: 0.4;
+}
+.captcha-button-1984.show-1984 {
+  pointer-events: all;
+  opacity: 1;
+}
+
+.loader-1984 {
+  position: absolute;
+  font-size: 10px;
+  margin: 0 auto;
+  text-indent: -9999em;
+  width: 4vw;
+  height: 4vw;
+  border-radius: 50%;
+  background: #7878FF;
+  background: linear-gradient(to right, rgba(120, 120, 255, 1) 10%, rgba(120, 120, 255, 0) 42%);
+  position: relative;
+  animation: load-spin 1.4s infinite linear;
+  transform: translateZ(0);
+  box-sizing: border-box;
+  pointer-events: none;
+  opacity: 0;
+}
+.loader-1984.show-1984 {
+  pointer-events: all;
+  opacity: 1;
+}
+
+.loader-1984:before {
+  width: 50%;
+  height: 50%;
+  background: #7878FF;
+  border-radius: 100% 0 0 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '';
+}
+
+.loader-1984:after {
+  background: #fff;
+  width: 75%;
+  height: 75%;
+  border-radius: 50%;
+  content: '';
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+@keyframes load-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
