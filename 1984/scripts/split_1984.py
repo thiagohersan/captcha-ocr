@@ -10,42 +10,45 @@ myoutpath = join(mydir, '..', 'out')
 if not exists(myoutpath):
   makedirs(myoutpath)
 
+langs = ['en', 'pt']
 myinpath = join(mydir, '..')
-fpath = join(myinpath, '1984_en.txt')
 
-lines = []
+for lang in langs:
+  fpath = join(myinpath, '1984_%s.txt'%lang)
 
-with open(fpath) as fpi:
-  text = (fpi.read()
-          .replace('\r\n', ' ')
-          .replace('\n', ' ')
-          .replace('    ', ' ')
-          .replace('   ', ' ')
-          .replace('  ', ' ')
-          .replace('--', ', '))
+  lines = []
 
-  words = text.strip().split(' ')
+  with open(fpath) as fpi:
+    text = (fpi.read()
+            .replace('\r\n', ' ')
+            .replace('\n', ' ')
+            .replace('    ', ' ')
+            .replace('   ', ' ')
+            .replace('  ', ' ')
+            .replace('--', ', '))
 
-  word_idx = 0
-  thisPhrase = ''
+    words = text.strip().split(' ')
 
-  while(word_idx < len(words)):
-    thisPhrase += words[word_idx] + ' '
+    word_idx = 0
+    thisPhrase = ''
 
-    if(thisPhrase.endswith('. ') or
-       thisPhrase.endswith('? ') or
-       thisPhrase.endswith('! ') or
-       thisPhrase.endswith('.\' ') or
-       thisPhrase.endswith('!\' ')):
-      if(len(thisPhrase) > 10):
-        lines.append(thisPhrase.strip())
-        thisPhrase = ''
-    word_idx += 1
+    while(word_idx < len(words)):
+      thisPhrase += words[word_idx] + ' '
 
-  lines.append(thisPhrase.strip())
+      if(thisPhrase.endswith('. ') or
+         thisPhrase.endswith('? ') or
+         thisPhrase.endswith('! ') or
+         thisPhrase.endswith('.\' ') or
+         thisPhrase.endswith('!\' ')):
+        if(len(thisPhrase) > 10):
+          lines.append(thisPhrase.strip())
+          thisPhrase = ''
+      word_idx += 1
 
-with open(join(myoutpath, 'out_' + '1984_en.js'), 'w') as fpo:
-  fpo.write('const phrases1984 = [\n')
-  for l in lines:
-    fpo.write('  \'' + l.replace('\'', '\\\'') + '\',\n')
-  fpo.write('];\n')
+    lines.append(thisPhrase.strip())
+
+  with open(join(myoutpath, 'out_' + '1984_%s.js'%lang), 'w') as fpo:
+    fpo.write('const phrases1984 = [\n')
+    for l in lines:
+      fpo.write('  \'' + l.replace('\'', '\\\'') + '\',\n')
+    fpo.write('];\n')
