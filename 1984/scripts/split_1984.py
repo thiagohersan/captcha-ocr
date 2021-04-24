@@ -11,7 +11,7 @@ if not exists(myoutpath):
   makedirs(myoutpath)
 
 myinpath = join(mydir, '..')
-fpath = join(myinpath, '1984_gutenberg.txt')
+fpath = join(myinpath, '1984_en.txt')
 
 lines = []
 
@@ -44,7 +44,7 @@ with open(fpath) as fpi:
     lines.append(thisPhrase.strip())
 
 
-with open(join(myoutpath, 'out_' + '1984.js'), 'w') as fpo:
+with open(join(myoutpath, 'out_' + '1984_en.js'), 'w') as fpo:
   fpo.write('const phrases1984 = [\n')
   for l in lines:
     fpo.write('  \'' + l.replace('\'', '\\\'') + '\',\n')
