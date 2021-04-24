@@ -166,8 +166,9 @@ function constrain(v, min, max) {
 
 function showCaptcha(event) {
   const padding = 5;
+  const bottomMenuHeight = 40;
   const maxLeft = EL.overlay.offsetWidth - EL.captchaContainer.offsetWidth;
-  const maxTop = EL.overlay.offsetHeight - EL.captchaContainer.offsetHeight;
+  const maxTop = EL.overlay.offsetHeight - bottomMenuHeight - EL.captchaContainer.offsetHeight;
   const centerLeft = (event.clientX - EL.captchaContainer.offsetWidth / 2);
   const centerTop = (event.clientY - EL.captchaContainer.offsetHeight / 2);
   EL.captchaContainer.style.left =  constrain(centerLeft, padding, maxLeft - padding) + 'px';
