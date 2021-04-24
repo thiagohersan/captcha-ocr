@@ -60,7 +60,7 @@ mHttpPost.onreadystatechange = (err) => {
     if (res.success && res.url.length > 0) {
       EL.captchaMessage.classList.remove('error-1984');
       EL.captchaInput.value = '';
-      window.location.href = res.url;
+      window.location.href = EL.link.getAttribute('href');
     } else {
       EL.captchaMessage.classList.add('error-1984');
       EL.captchaMessage.innerHTML = TEXT.error[API.lang];
@@ -73,8 +73,7 @@ window.addEventListener('load', () => {
   setLanguage();
   getCaptcha();
 
-  const allAs = Array.from(document.getElementsByTagName('a'));
-  EL.link = allAs.filter(el => isConfirmHumanityLink(el.getAttribute('href')))[0];
+  EL.link = document.getElementById('mnhumanity');
 
   EL.overlay = document.createElement('div');
   EL.overlay.classList.add('overlay-1984');
@@ -156,10 +155,6 @@ window.addEventListener('load', () => {
     }
   });
 });
-
-function isConfirmHumanityLink(link) {
-  return link.includes('curadoria/info/5');
-}
 
 function setLanguage() {
   API.lang = document.documentElement.getAttribute('lang') || 'en';
