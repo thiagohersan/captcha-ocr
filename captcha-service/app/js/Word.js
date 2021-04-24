@@ -143,7 +143,7 @@ class Word {
   waveShear(chars) {
     const ampHi = 4 * random(0.5, 1);
     const ampLo = 12 * random(0.5, 1);
-    const nWavesLo = this.word.length / 2;
+    const nWavesLo = Math.min(this.word.length, 10) / 2;
     const phase = random(-PI, PI);
 
     for(let c = 0; c < chars.length; c++) {
