@@ -82,7 +82,8 @@ function createCaptcha() {
 
 function create1984Captcha() {
   const mLanguage = Array.from(EL.languages).find(el => el.checked).value;
-  const m1984Phrases = seedPhrases.find(el => el.book === '1984').phrases[mLanguage];
+  //const m1984Phrases = seedPhrases.find(el => el.book === '1984').phrases[mLanguage];
+  const m1984Phrases = phrases_1984[mLanguage];
   EL.text.value = m1984Phrases[Math.floor(m1984Phrases.length * Math.random())];
   createCaptcha();
 }
