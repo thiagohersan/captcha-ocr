@@ -29,20 +29,20 @@ with open(fpath) as fpi:
   word_idx = 0
   thisPhrase = ''
 
-  while(words[word_idx] != 'PART'):
-    word_idx += 1
-
   while(word_idx < len(words)):
     thisPhrase += words[word_idx] + ' '
 
-    if(len(thisPhrase) > 40):
-      lines.append(thisPhrase.strip())
-      thisPhrase = ''
+    if(thisPhrase.endswith('. ') or
+       thisPhrase.endswith('? ') or
+       thisPhrase.endswith('! ') or
+       thisPhrase.endswith('.\' ') or
+       thisPhrase.endswith('!\' ')):
+      if(len(thisPhrase) > 10):
+        lines.append(thisPhrase.strip())
+        thisPhrase = ''
     word_idx += 1
 
-  if(len(thisPhrase) > 0):
-    lines.append(thisPhrase.strip())
-
+  lines.append(thisPhrase.strip())
 
 with open(join(myoutpath, 'out_' + '1984_en.js'), 'w') as fpo:
   fpo.write('const phrases1984 = [\n')
