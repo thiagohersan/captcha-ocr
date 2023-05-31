@@ -5,7 +5,8 @@ const decrypt = require('crypto-js').AES.decrypt;
 const utf8f = require('crypto-js').enc.Utf8;
 const compareTwoStrings = require('string-similarity').compareTwoStrings;
 
-const chrome = require('chrome-aws-lambda');
+const chrome = require("@sparticuz/chromium");
+const puppeteer = require("puppeteer-core");
 
 module.exports.compare = async (event, context) => {
   const body = JSON.parse(event.body);
@@ -34,10 +35,10 @@ module.exports.image = async (event, context) => {
 
   const mLang = event.queryStringParameters ? (event.queryStringParameters.lang || 'en') : 'en';
 
-  const browser = await chrome.puppeteer.launch({
+  const browser = await puppeteer.launch({
     args: chrome.args,
     defaultViewport: chrome.defaultViewport,
-    executablePath: await chrome.executablePath,
+    executablePath: await chrome.executablePath(),
     headless: true,
     ignoreHTTPSErrors: true
   });
