@@ -7,13 +7,12 @@
     "test": "mocha --timeout 5000 ./service/tests"
   },
   "dependencies": {
-    "@sparticuz/chromium-min": "^110.0.1",
+    "@sparticuz/chromium": "^110.0.1",
     "crypto-js": "^4.0.0",
     "puppeteer-core": "^19.6.0",
     "string-similarity": "^4.0.4"
   },
   "devDependencies": {
-    "@sparticuz/chromium": "^110.0.1",
     "aws-sdk": "^2.635.0",
     "aws-sdk-mock": "^5.0.0",
     "dotenv": "^8.2.0",
