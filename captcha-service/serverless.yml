@@ -5,12 +5,10 @@ frameworkVersion: '3'
 
 provider:
   name: aws
-  runtime: nodejs14.x
+  runtime: nodejs18.x
   stage: ${opt:stage, 'dev'}
   region: us-east-1
   lambdaHashingVersion: 20201221
-  layers:
-    - arn:aws:lambda:${self:provider.region}:764866452798:layer:chrome-aws-lambda:22
   memorySize: 640
   timeout: 16
   environment:
