@@ -8,11 +8,14 @@ const compareTwoStrings = require('string-similarity').compareTwoStrings;
 const chrome = require("@sparticuz/chromium");
 const puppeteer = require("puppeteer-core");
 
+chrome.setHeadlessMode = true;
+chrome.setGraphicsMode = false;
+
 module.exports.compare = async (event, context) => {
   const body = JSON.parse(event.body);
   const phrase = toLower(body.phrase);
-  const answer  = toLower(decrypt(body.token,
-                                  process.env.THE_ANSWER).toString(utf8f));
+  const answer = toLower(decrypt(body.token,
+                                 process.env.THE_ANSWER).toString(utf8f));
 
   const success = (compareTwoStrings(phrase, answer) > 0.8);
   const url = success ? process.env.SUCCESS_URL : '';
